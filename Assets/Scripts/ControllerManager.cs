@@ -8,16 +8,14 @@ public class ControllerManager : MonoBehaviour {
 
     [SerializeField]
     private Transform throwObj;
-
+    private Transform tmpCash; 
     private Vector3 resetPos;
-    private Rigidbody throwRigid;
 	// Use this for initialization
 
     private float dragTime;
 
     public int force;
 	void Start () {
-        throwRigid = throwObj.GetComponent<Rigidbody>();
         resetPos = throwObj.position;
 	}
 	
@@ -38,6 +36,7 @@ public class ControllerManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             resetPosition();
+            tmpCash = PoolManager.Inst.CreateCash(resetPos);
             dragTime = 0;
             startPos = Input.mousePosition;
         }
@@ -51,7 +50,7 @@ public class ControllerManager : MonoBehaviour {
             float angle = Vector3.Angle(targetDir, Vector3.left);
             float distance = targetDir.magnitude;
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-            throwRigid.AddForce(dir * ( (force/dragTime) * distance));
+            tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force/dragTime) * distance));
 
             Debug.Log("Start : " + startPos + " End : " + endPos + " angle : "+angle);
         }
@@ -61,6 +60,5 @@ public class ControllerManager : MonoBehaviour {
     private void resetPosition()
     {
         throwObj.position = resetPos;
-        throwRigid.velocity = Vector3.zero;
     }
 }
