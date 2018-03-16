@@ -214,8 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwSpawnPos: {fileID: 695825719}
-  force: 0.9
-  distanceFactor: 1.1
+  force: 0.6
+  distanceFactor: 1
 --- !u!4 &44064901
 Transform:
   m_ObjectHideFlags: 0
