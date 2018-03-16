@@ -17,10 +17,23 @@ public class CorrupterSpawnerManager : MonoBehaviour
 	void Start () {
         currentTime = 0;
         corrupters = new Dictionary<int, List<BaseCorrupter>>();
+        ///Hard Code for now
+        corrupters[0] = new List<BaseCorrupter>();
+        var polices = gameObject.transform.GetComponentsInChildren<BaseCorrupter>();
+        foreach (var police in polices)
+        {
+            police.CorrupterID = 0;
+            police.CorrupterManager = this;
+            corrupters[0].Add(police);
+        }
+        ///Hard Code for now
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        return;
+
         currentTime += Time.deltaTime;
         if (currentTime >= cooldownSpawn)
         {

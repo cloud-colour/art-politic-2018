@@ -7,17 +7,17 @@ public class ControllerManager : MonoBehaviour {
     private Vector3 startPos,endPos;
 
     [SerializeField]
-    private Transform throwObj;
-    private Transform tmpCash; 
-    private Vector3 resetPos;
-	// Use this for initialization
+    private Transform throwSpawnPos;
+
+    private Transform tmpCash;
 
     private float dragTime;
 
     public int force;
     public int distanceFactor;
-	void Start () {
-        resetPos = throwObj.position;
+	void Start () 
+    {
+        
 	}
 	
     void OnDrawGizmos()
@@ -29,12 +29,12 @@ public class ControllerManager : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 		
         if (Input.GetMouseButtonDown(0))
         {
-            resetPosition();
-            tmpCash = PoolManager.Inst.CreateCash(resetPos);
+            tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
             dragTime = 0;
             startPos = Input.mousePosition;
         }
@@ -54,9 +54,4 @@ public class ControllerManager : MonoBehaviour {
         }
 
 	}
-
-    private void resetPosition()
-    {
-        throwObj.position = resetPos;
-    }
 }

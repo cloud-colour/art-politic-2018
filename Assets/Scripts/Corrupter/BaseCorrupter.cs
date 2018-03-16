@@ -15,7 +15,7 @@ public class BaseCorrupter : MonoBehaviour {
 	
 	// Update is called once per frame
     virtual protected void Update () {
-        transform.Translate(Vector3.left * Time.deltaTime);
+//        transform.Translate(Vector3.left * Time.deltaTime);
 	}
 
     virtual protected void OnCollisionEnter (Collision col)
