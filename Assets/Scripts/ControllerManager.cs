@@ -15,6 +15,7 @@ public class ControllerManager : MonoBehaviour {
     private float dragTime;
 
     public int force;
+    public int distanceFactor;
 	void Start () {
         resetPos = throwObj.position;
 	}
@@ -50,7 +51,7 @@ public class ControllerManager : MonoBehaviour {
             float angle = Vector3.Angle(targetDir, Vector3.left);
             float distance = targetDir.magnitude;
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-            tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force/dragTime) * distance));
+            tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force/dragTime) * (distance * distanceFactor )));
 
             Debug.Log("Start : " + startPos + " End : " + endPos + " angle : "+angle);
         }
