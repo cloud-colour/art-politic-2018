@@ -16,9 +16,9 @@ public class Cash : MonoBehaviour {
 
     void OnCollisionEnter (Collision col)
     {
-        if(col.gameObject.tag == "corrupter")
-        {
-            gameObject.SetActive(false);
-        }
+//        if(col.gameObject.tag == "corrupter")
+//        {
+//            gameObject.SetActive(false);
+//        }
     }
 }

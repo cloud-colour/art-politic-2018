@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 33598654309017210}
   - component: {fileID: 136678726126243324}
   - component: {fileID: 23241733337705314}
-  - component: {fileID: 114673465680715206}
   - component: {fileID: 54116150297153914}
+  - component: {fileID: 114006884445367244}
   m_Layer: 8
-  m_Name: Cop
+  m_Name: Officer
   m_TagString: corrupter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &114673465680715206
+--- !u!114 &114006884445367244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1919918721678824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed0d74bc96f04aaba8aae131d5a4377, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bf2ba33e9d0641e8ae96c20ede58a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CorrupterManager: {fileID: 0}

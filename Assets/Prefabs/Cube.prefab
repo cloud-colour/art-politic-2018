@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23745613298186224}
   - component: {fileID: 54083294864490114}
   - component: {fileID: 114694523214435826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: cash
   m_Icon: {fileID: 0}
