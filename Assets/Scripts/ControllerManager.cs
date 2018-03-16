@@ -13,8 +13,8 @@ public class ControllerManager : MonoBehaviour {
 
     private float dragTime;
 
-    public int force;
-    public int distanceFactor;
+    public float force;
+    public float distanceFactor;
 	void Start () 
     {
         
