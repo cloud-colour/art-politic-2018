@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\ControllerManager.cs" />
      <Compile Include="Assets\Scripts\Corrupter\BaseCorrupter.cs" />
      <Compile Include="Assets\Scripts\Corrupter\Cop.cs" />
+     <Compile Include="Assets\Scripts\Corrupter\Officer.cs" />
      <Compile Include="Assets\Scripts\CorrupterSpawnerManager.cs" />
      <Compile Include="Assets\Scripts\PoolManager.cs" />
      <Compile Include="Assets\Scripts\SequenceManager.cs" />
