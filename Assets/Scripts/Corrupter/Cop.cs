@@ -13,4 +13,16 @@ public class Cop : BaseCorrupter {
     override protected void Update () {
         base.Update();
 	}
+
+    override protected void OnCollisionEnter (Collision col)
+    {
+        if(col.gameObject.tag == "cash")
+        {
+            if (CorrupterManager.GetCorrupterByID(1).Count == 0)
+            {
+                CorrupterManager.Despawn(this);
+                col.gameObject.SetActive(false);
+            }
+        }
+    }
 }
