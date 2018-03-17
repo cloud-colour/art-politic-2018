@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CorrupterSpawnerManager : MonoBehaviour 
+public class CorrupterManager : MonoBehaviour 
 {
 
     [SerializeField]
@@ -60,6 +60,7 @@ public class CorrupterSpawnerManager : MonoBehaviour
     {
         corrupter.gameObject.SetActive(false);
         corrupters[corrupter.CorrupterID].Remove(corrupter);
+        CheckServivedTheLawsuit();
     }
 
     public List<BaseCorrupter> GetCorrupterByID(int corrupterId)
@@ -68,5 +69,16 @@ public class CorrupterSpawnerManager : MonoBehaviour
             return corrupters[corrupterId];
         else
             return new List<BaseCorrupter>();
+    }
+
+    private void CheckServivedTheLawsuit()
+    {
+        foreach (var corrupterList in corrupters)
+        {
+            if (corrupterList.Value.Count > 0)
+                return;
+        }
+
+        GameSceneManager.GetInstance().GoToNextStage();
     }
 }

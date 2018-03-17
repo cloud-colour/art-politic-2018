@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseCorrupter : MonoBehaviour {
     [HideInInspector]
-    public CorrupterSpawnerManager CorrupterManager;
+    public CorrupterManager CorrupterManager;
     [HideInInspector]
     public int CorrupterID;
 

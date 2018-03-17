@@ -78,6 +78,15 @@ public class ControllerManager : MonoBehaviour {
         {
             StartCoroutine(SpawnHeapOfMoney());
         }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GameSceneManager.GetInstance().GoToNextStage();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GameSceneManager.GetInstance().GoToPrevStage();
+        }
 	}
 
 	Transform CloneTrail()
