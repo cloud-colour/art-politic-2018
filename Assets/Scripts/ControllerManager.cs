@@ -73,6 +73,11 @@ public class ControllerManager : MonoBehaviour {
 				cacheTrail.transform.position = touchPos;
 			}
 		}
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            StartCoroutine(SpawnHeapOfMoney());
+        }
 	}
 
 	Transform CloneTrail()
@@ -80,4 +85,17 @@ public class ControllerManager : MonoBehaviour {
 		var clone = Instantiate(trailPrefab,Camera.main.ScreenToWorldPoint(Input.mousePosition),Quaternion.identity,null);
 		return clone;
 	}
+
+    IEnumerator SpawnHeapOfMoney()
+    {
+        Vector3 tmpPos;
+        for(int i = 0 ;i <= 100; i++)
+        {
+            tmpPos = new Vector3( Random.Range(0,Screen.width),Screen.height , 0);
+            tmpPos = Camera.main.ScreenToWorldPoint(tmpPos);
+            tmpPos.z = 0;
+            tmpCash = PoolManager.Inst.CreateCash(tmpPos);
+            yield return 0;
+        }
+    }
 }

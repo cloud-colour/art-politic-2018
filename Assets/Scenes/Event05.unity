@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.38073993, b: 0.358727, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1244,7 +1244,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 524587366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.442244, y: -4.53174, z: -11.4909935}
+  m_LocalPosition: {x: 2.442244, y: -3.09, z: -11.4909935}
   m_LocalScale: {x: -9.24, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 44064901}
@@ -2172,6 +2172,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1145919088}
+  - component: {fileID: 1145919089}
   m_Layer: 0
   m_Name: PoliceGrp
   m_TagString: Untagged
@@ -2228,6 +2229,18 @@ Transform:
   m_Father: {fileID: 1664955921}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145919089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1145919087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07884b051b7a74545b3b546b688fab14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 153488450}
 --- !u!1001 &1153013710
 Prefab:
   m_ObjectHideFlags: 0
@@ -3788,18 +3801,6 @@ Prefab:
     - target: {fileID: 4842825975673852, guid: c265108bfeb650347a0a92f5c31b7dea, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4842825975673852, guid: c265108bfeb650347a0a92f5c31b7dea, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4842825975673852, guid: c265108bfeb650347a0a92f5c31b7dea, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4842825975673852, guid: c265108bfeb650347a0a92f5c31b7dea, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c265108bfeb650347a0a92f5c31b7dea, type: 2}
