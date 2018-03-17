@@ -33,7 +33,7 @@ public class ControllerManager : MonoBehaviour {
     {
         if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.VictoryWaintInput)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
                 GameSceneManager.GetInstance().GoToNextStage();
             }
