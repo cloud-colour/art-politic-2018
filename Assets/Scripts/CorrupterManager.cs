@@ -14,17 +14,10 @@ public enum CorrupterType
 public class CorrupterManager : MonoBehaviour 
 {
 
-    [SerializeField]
-    private Transform spawnPoint;
-
-    private float cooldownSpawn = 3.0f;
-    private float currentTime;
-
     private Dictionary<int,List<BaseCorrupter>> corrupters;
 
 	// Use this for initialization
 	void Start () {
-        currentTime = 0;
         corrupters = new Dictionary<int, List<BaseCorrupter>>();
         foreach (CorrupterType suit in Enum.GetValues(typeof(CorrupterType)))
         {
@@ -65,19 +58,6 @@ public class CorrupterManager : MonoBehaviour
 	void Update () {
 
 	}
-
-    void Spawn(int corrupterId)
-    {
-        BaseCorrupter tmpCorrupter = PoolManager.Inst.CreateCorrupter(corrupterId);
-        tmpCorrupter.CorrupterManager = this;
-        tmpCorrupter.CorrupterID = corrupterId;
-        tmpCorrupter.transform.position = spawnPoint.position;
-
-        if (!corrupters.ContainsKey(corrupterId))
-            corrupters[corrupterId] = new List<BaseCorrupter>();
-
-        corrupters[corrupterId].Add(tmpCorrupter);
-    }
 
     public void Despawn(BaseCorrupter corrupter)
     {

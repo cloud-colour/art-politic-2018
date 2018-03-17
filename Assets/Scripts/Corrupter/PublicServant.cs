@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PublicServant : BaseCorrupter {
 
+    public float radius;
+    public float power;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,14 +19,17 @@ public class PublicServant : BaseCorrupter {
 
     override protected void OnCollisionEnter (Collision col)
     {
-        if(cashCheck(col))
+        if (cashCheck(col))
         {
-            GotCash(col.gameObject);
+            Rigidbody cash = col.gameObject.GetComponent<Rigidbody>();
+            cash.velocity = Vector3.zero;
+            cash.AddExplosionForce(power, transform.position, radius);
         }
     }
 
     public void Die()
     {
         CorrupterManager.Despawn(this);
+        this.gameObject.SetActive(false);
     }
 }

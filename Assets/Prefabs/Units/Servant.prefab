@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4456424495107586}
   - component: {fileID: 212629221491526912}
-  - component: {fileID: 65485257222032780}
   - component: {fileID: 114631371398808666}
+  - component: {fileID: 135766397409752000}
   m_Layer: 8
   m_Name: Servant
   m_TagString: Untagged
@@ -36,24 +36,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713617171451310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.95, y: 0, z: 0}
+  m_LocalPosition: {x: 9.56, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65485257222032780
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1713617171451310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.74, y: 1.4, z: 0.2}
-  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &114631371398808666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,6 +55,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CorrupterManager: {fileID: 0}
   CorrupterID: 0
+  radius: 400
+  power: 2000
+--- !u!135 &135766397409752000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713617171451310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.77
+  m_Center: {x: 0, y: 0.78, z: 0}
 --- !u!212 &212629221491526912
 SpriteRenderer:
   m_ObjectHideFlags: 1
