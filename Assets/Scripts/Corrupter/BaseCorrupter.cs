@@ -33,8 +33,15 @@ public class BaseCorrupter : MonoBehaviour {
 
     virtual protected void GotCash(GameObject cash)
     {
+        SoundManager.inst.PlaySFXOneShot(4);
         CorrupterManager.Despawn(this);
         cash.SetActive(false);
 		this.GetComponent<Collider>().enabled = false;
     }
+
+	//called in "Action" animation
+	public void DespawnCorrupter()
+	{
+		CorrupterManager.Despawn(this);
+	}
 }

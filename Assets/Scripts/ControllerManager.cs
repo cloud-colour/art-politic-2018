@@ -25,7 +25,7 @@ public class ControllerManager : MonoBehaviour {
 
 	void Start () 
     {
-        
+        SoundManager.inst.PlayBGM(1);
 	}
 	
     void OnDrawGizmos()
@@ -58,7 +58,7 @@ public class ControllerManager : MonoBehaviour {
             float distance = targetDir.magnitude / Screen.width;
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
             tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
-
+            SoundManager.inst.PlaySFXOneShot(5);
             Debug.Log("Start : " + startPos + " End : " + endPos + " angle : "+angle);
 			cacheTrail = null;
         }

@@ -40,26 +40,20 @@ public class Cop : BaseCorrupter {
     {
         if(cashCheck(col))
         {
-            if (CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count == 0)
-            {
-				isHappy = true;
+			isHappy = true;
 
-				transform.localScale = Vector3.one;
-				anim.Stop();
-				anim.Play("Action");
-                GotCash(col.gameObject);
-            }
+			transform.localScale = Vector3.one;
+			anim.Stop();
+			anim.Play("Action");
+            GotCash(col.gameObject);
         }
     }
 
-	//called in "Action" animation
-	public void DespawnCorrupter()
-	{
-		CorrupterManager.Despawn(this);
-	}
+
 
 	override protected void GotCash(GameObject cash)
 	{
+        SoundManager.inst.PlaySFXOneShot(4);
 		cash.SetActive(false);
 		this.GetComponent<Collider>().enabled = false;
 	}
