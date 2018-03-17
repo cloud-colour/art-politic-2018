@@ -31,7 +31,7 @@ public class BaseCorrupter : MonoBehaviour {
         return col.gameObject.tag == "cash" && col.gameObject.activeInHierarchy;
     }
 
-    protected void GotCash(GameObject cash)
+    virtual protected void GotCash(GameObject cash)
     {
         CorrupterManager.Despawn(this);
         cash.SetActive(false);

@@ -57,4 +57,10 @@ public class Cop : BaseCorrupter {
 	{
 		CorrupterManager.Despawn(this);
 	}
+
+	override protected void GotCash(GameObject cash)
+	{
+		cash.SetActive(false);
+		this.GetComponent<Collider>().enabled = false;
+	}
 }
