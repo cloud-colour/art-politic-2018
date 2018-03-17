@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Event01Ctrl
+  m_Name: Event02Ctrl
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: DebugSkipIntro
@@ -91,7 +91,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 28116a71c538e3046a830c50319ab72c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3e7b413a5b195284e9440df79a9e9487, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -117,7 +117,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bbbe982b74454d844af262f29402e6bd, type: 2}
+  m_Motion: {fileID: 7400000, guid: cb11824029af12d4486c4f58e03add6c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
