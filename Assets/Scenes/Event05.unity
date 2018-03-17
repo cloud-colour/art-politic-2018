@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainAnim: {fileID: 1664955923}
-  skipIntro: 1
+  skipIntro: 0
 --- !u!1 &651942435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +1997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b54d5ea08930444b58c95d9bf375cc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 153488450}
+  spawnPoint: {fileID: 0}
 --- !u!1001 &1153013710
 Prefab:
   m_ObjectHideFlags: 0
