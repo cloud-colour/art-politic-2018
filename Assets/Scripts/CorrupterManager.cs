@@ -68,8 +68,11 @@ public class CorrupterManager : MonoBehaviour
     {
         corrupters[corrupter.CorrupterID].Remove(corrupter);
 
-        if (GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
-            SetAllActiveCollider(CorrupterType.Police, true);
+        if (corrupter.CorrupterID == (int)CorrupterType.Officer)
+        {
+            if (GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
+                SetAllActiveCollider(CorrupterType.Police, true);
+        }
         CheckServivedTheLawsuit();
     }
 
