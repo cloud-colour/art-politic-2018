@@ -33,6 +33,11 @@ public class GameSceneManager {
         LoadCurrentScene();
     }
 
+    public void ReloadScene()
+    {
+        LoadCurrentScene();
+    }
+
     private void LoadCurrentScene()
     {
 
