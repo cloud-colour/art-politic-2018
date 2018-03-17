@@ -55,7 +55,7 @@ public class SoundManager : MonoBehaviour {
 
 	public void PlaySFXOneShot(int index)
 	{
-		SFXAudioSource.clip = RawSFX[index];
+//		SFXAudioSource.clip = RawSFX[index];
 		SFXAudioSource.PlayOneShot(RawSFX[index]);
 	}
 

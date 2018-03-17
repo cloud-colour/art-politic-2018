@@ -40,19 +40,12 @@ public class Cop : BaseCorrupter {
     {
         if(cashCheck(col))
         {
-            if (CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
-            {
-				isHappy = true;
+			isHappy = true;
 
-				transform.localScale = Vector3.one;
-				anim.Stop();
-				anim.Play("Action");
-                GotCash(col.gameObject);
-            }
-			else
-			{
-				col.gameObject.layer = LayerMask.NameToLayer("CleanCash");
-			}
+			transform.localScale = Vector3.one;
+			anim.Stop();
+			anim.Play("Action");
+            GotCash(col.gameObject);
         }
     }
 
@@ -60,6 +53,7 @@ public class Cop : BaseCorrupter {
 
 	override protected void GotCash(GameObject cash)
 	{
+        SoundManager.inst.PlaySFXOneShot(4);
 		cash.SetActive(false);
 		this.GetComponent<Collider>().enabled = false;
 	}
