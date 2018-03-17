@@ -1,10 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Timer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Corrupter\PublicServant.cs">
     <Files>
-      <File FileName="Assets\Scripts\SequenceManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\StageAnimEvent.cs" Line="10" Column="17" />
-      <File FileName="Assets\Scripts\Timer.cs" Line="39" Column="2" />
+      <File FileName="Assets\Scripts\StageAnimEvent.cs" Line="13" Column="3" />
+      <File FileName="Assets\Scripts\Timer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Corrupter\Cop.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Corrupter\BaseCorrupter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CorrupterManager.cs" Line="99" Column="52" />
+      <File FileName="Assets\Scripts\ControllerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PoolManager.cs" Line="47" Column="3" />
+      <File FileName="Assets\Scripts\Corrupter\PublicServant.cs" Line="56" Column="23" />
+      <File FileName="Assets\Scripts\Corrupter\Officer.cs" Line="32" Column="3" />
+      <File FileName="Assets\Scripts\Corrupter\Soldier.cs" Line="52" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
