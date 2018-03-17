@@ -55,7 +55,7 @@ public class ControllerManager : MonoBehaviour {
 
             Vector3 targetDir = startPos - endPos;
             float angle = Vector3.Angle(targetDir, Vector3.left);
-            float distance = targetDir.magnitude;
+            float distance = targetDir.magnitude / Screen.width;
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
             tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
 
