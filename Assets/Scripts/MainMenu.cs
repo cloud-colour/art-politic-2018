@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 	void Start () {
         SoundManager.inst.PlayBGM(0);
         GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitleThrow);
-        Invoke("ChangeGameStateToWaitInput",3f);
+        Invoke("ChangeGameStateToWaitInput",6f);
 	}
 	
 	// Update is called once per frame
