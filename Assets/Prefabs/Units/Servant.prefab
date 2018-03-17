@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713617171451310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.56, y: 0, z: 0}
+  m_LocalPosition: {x: 5.1, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,8 +55,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CorrupterManager: {fileID: 0}
   CorrupterID: 0
-  radius: 400
-  power: 2000
+  radius: 150
+  power: 500
 --- !u!135 &135766397409752000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -67,7 +67,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.77
+  m_Radius: 0.95
   m_Center: {x: 0, y: 0.78, z: 0}
 --- !u!212 &212629221491526912
 SpriteRenderer:
