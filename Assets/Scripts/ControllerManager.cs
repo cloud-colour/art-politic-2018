@@ -87,6 +87,11 @@ public class ControllerManager : MonoBehaviour {
         {
             GameSceneManager.GetInstance().GoToPrevStage();
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            GameSceneManager.GetInstance().ReloadScene();
+        }
 	}
 
 	Transform CloneTrail()
