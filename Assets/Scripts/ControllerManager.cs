@@ -25,7 +25,7 @@ public class ControllerManager : MonoBehaviour {
 
 	void Start () 
     {
-        
+        SoundManager.inst.PlayBGM(1);
 	}
 	
     void OnDrawGizmos()
