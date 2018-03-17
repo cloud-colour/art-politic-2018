@@ -19,26 +19,31 @@ public class GameSceneManager {
     {
         if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
-            LoadCurrentScene(0);
+            ReturnToWelcome();
             return;
         }
 
-        LoadCurrentScene(SceneManager.GetActiveScene().buildIndex+1);
+        LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void GoToPrevStage()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
             return;
-        LoadCurrentScene(SceneManager.GetActiveScene().buildIndex-1);
+        LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex-1);
     }
 
     public void ReloadScene()
     {
-        LoadCurrentScene(SceneManager.GetActiveScene().buildIndex);
+        LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void LoadCurrentScene(int index)
+    public void ReturnToWelcome()
+    {
+        LoadSceneByIndex(0);
+    }
+
+    private void LoadSceneByIndex(int index)
     {
 
         SceneManager.LoadScene(index);

@@ -46,6 +46,11 @@ public class ControllerManager : MonoBehaviour {
             GameSceneManager.GetInstance().ReloadScene();
         }
 
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            GameSceneManager.GetInstance().ReturnToWelcome();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             #if UNITY_EDITOR
