@@ -81,7 +81,6 @@ public class CorrupterManager : MonoBehaviour
 
     public void Despawn(BaseCorrupter corrupter)
     {
-        corrupter.gameObject.SetActive(false);
         corrupters[corrupter.CorrupterID].Remove(corrupter);
         CheckServivedTheLawsuit();
     }
