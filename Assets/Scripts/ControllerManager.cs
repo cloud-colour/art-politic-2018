@@ -25,21 +25,25 @@ public class ControllerManager : MonoBehaviour {
 
 	void Start () 
     {
-        SoundManager.inst.PlayBGM(1);
+        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
 	}
-	
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector3 startDraw = Camera.main.ScreenToWorldPoint(startPos + new Vector3(0, 0, 100));
-        Vector3 endDraw = Camera.main.ScreenToWorldPoint(endPos + new Vector3(0, 0, 100));
-        Gizmos.DrawLine(startDraw, endDraw);
-    }
 
 	// Update is called once per frame
 	void Update () 
     {
-		
+        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.VictoryWaintInput)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GameSceneManager.GetInstance().GoToNextStage();
+            }
+            return;
+        }
+
+        if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay)
+            return;
+
+
         if (Input.GetMouseButtonDown(0))
         {
             tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
@@ -58,6 +62,7 @@ public class ControllerManager : MonoBehaviour {
             float distance = targetDir.magnitude / Screen.width;
             Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
             tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
+            tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
             SoundManager.inst.PlaySFXOneShot(5);
             Debug.Log("Start : " + startPos + " End : " + endPos + " angle : "+angle);
 			cacheTrail = null;
@@ -74,11 +79,6 @@ public class ControllerManager : MonoBehaviour {
 			}
 		}
 
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            StartCoroutine(SpawnHeapOfMoney());
-        }
-
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             GameSceneManager.GetInstance().GoToNextStage();
@@ -91,6 +91,20 @@ public class ControllerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             GameSceneManager.GetInstance().ReloadScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #else
+            Application.Quit();
+            #endif
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            StartCoroutine(SpawnHeapOfMoney());
         }
 	}
 
