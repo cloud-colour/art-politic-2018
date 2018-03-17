@@ -19,9 +19,15 @@ public class GameSceneManager {
 
     public void GoToNextStage()
     {
-        if (currectScene == SceneManager.sceneCountInBuildSettings-1)
+        if (currectScene == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            currectScene = 0;
+            LoadCurrentScene();
             return;
-        currectScene++;
+        }
+
+
+        currectScene = SceneManager.GetActiveScene().buildIndex+1;
         LoadCurrentScene();
     }
 
@@ -29,7 +35,7 @@ public class GameSceneManager {
     {
         if (currectScene == 0)
             return;
-        currectScene--;
+        currectScene = SceneManager.GetActiveScene().buildIndex-1;
         LoadCurrentScene();
     }
 

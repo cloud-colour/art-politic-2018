@@ -99,8 +99,6 @@ public class ControllerManager : MonoBehaviour {
             SoundManager.inst.PlaySFXOneShot(5);
 			cacheTrail = null;
 
-            if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleWaitInput)
-                GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitlePlayStart);
         }
 
 		//trail renderer
