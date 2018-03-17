@@ -16946,7 +16946,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Flick to Start
+  m_text: 'Start Flicking
+
+    To Begin'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 16eb49febcfcf7b44b94b63f6b2d4531, type: 2}
   m_sharedMaterial: {fileID: 21228329938056202, guid: 16eb49febcfcf7b44b94b63f6b2d4531,
@@ -17014,12 +17016,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1384873929}
-    characterCount: 14
+    characterCount: 23
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -19781,7 +19783,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1589629553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0.84, z: 0}
+  m_LocalPosition: {x: 0.07, y: 0.84, z: -0.01}
   m_LocalScale: {x: 4.85787, y: 4.85787, z: 4.85787}
   m_Children: []
   m_Father: {fileID: 1295642916}
