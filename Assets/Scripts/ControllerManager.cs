@@ -40,6 +40,11 @@ public class ControllerManager : MonoBehaviour {
             return;
         }
 
+		if(GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.Title)
+		{
+
+		}
+
         if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay)
             return;
 
