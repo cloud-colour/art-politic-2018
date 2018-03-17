@@ -92,7 +92,7 @@ public class CorrupterManager : MonoBehaviour
                 return;
         }
 
-        GameSceneManager.GetInstance().GoToNextStage();
+        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictorySequence);
     }
 
     private void SetAllActiveCollider(CorrupterType type, bool enable)
