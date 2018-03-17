@@ -23,6 +23,7 @@ public class ControllerManager : MonoBehaviour {
 	private float trailDragDuration;
 	private Transform cacheTrail;
 
+    private float intervalTime;
 	void Start () 
     {
         GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
@@ -31,59 +32,6 @@ public class ControllerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.VictoryWaintInput)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                GameSceneManager.GetInstance().GoToNextStage();
-            }
-            return;
-        }
-
-		if(GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.Title)
-		{
-
-		}
-
-        if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay)
-            return;
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
-            dragTime = 0;
-            startPos = Input.mousePosition;
-			cacheTrail = CloneTrail();
-        }
-
-        dragTime += Time.deltaTime;
-        if (Input.GetMouseButtonUp(0))
-        {
-            endPos = Input.mousePosition;
-
-            Vector3 targetDir = startPos - endPos;
-            float angle = Vector3.Angle(targetDir, Vector3.left);
-            float distance = targetDir.magnitude / Screen.width;
-            Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-            tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
-            tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
-            SoundManager.inst.PlaySFXOneShot(5);
-            Debug.Log("Start : " + startPos + " End : " + endPos + " angle : "+angle);
-			cacheTrail = null;
-        }
-
-		//trail renderer
-		if(Input.GetMouseButton(0) && dragTime < trailDragDuration)
-		{
-			if(cacheTrail)
-			{
-				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				touchPos.z = -1.96f; //hardcoded trail z pos
-				cacheTrail.transform.position = touchPos;
-			}
-		}
-
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             GameSceneManager.GetInstance().GoToNextStage();
@@ -106,6 +54,67 @@ public class ControllerManager : MonoBehaviour {
             Application.Quit();
             #endif
         }
+
+        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.VictoryWaintInput)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameSceneManager.GetInstance().GoToNextStage();
+            }
+            return;
+        }
+
+        if(GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
+		{
+            intervalTime += Time.deltaTime;
+            if (intervalTime >= 0.5f)
+            {
+                dragTime = Time.deltaTime * Random.Range(6, 7); 
+                ThrowMoney(Random.Range(20, 60), Random.Range(3, 6) / 10f);
+                intervalTime = 0;
+            }
+		}
+
+        if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay && 
+            GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.TitleWaitInput)
+            return;
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+            dragTime = 0;
+            startPos = Input.mousePosition;
+			cacheTrail = CloneTrail();
+        }
+
+        dragTime += Time.deltaTime;
+        if (Input.GetMouseButtonUp(0))
+        {
+            endPos = Input.mousePosition;
+            Vector3 targetDir = startPos - endPos;
+            float angle = Vector3.Angle(targetDir, Vector3.left);
+            float distance = targetDir.magnitude / Screen.width;
+            ThrowMoney(angle, distance);
+            SoundManager.inst.PlaySFXOneShot(5);
+			cacheTrail = null;
+
+            if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleWaitInput)
+                GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitlePlayStart);
+        }
+
+		//trail renderer
+		if(Input.GetMouseButton(0) && dragTime < trailDragDuration)
+		{
+			if(cacheTrail)
+			{
+				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				touchPos.z = -1.96f; //hardcoded trail z pos
+				cacheTrail.transform.position = touchPos;
+			}
+		}
+
+
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -130,5 +139,14 @@ public class ControllerManager : MonoBehaviour {
             tmpCash = PoolManager.Inst.CreateCash(tmpPos);
             yield return 0;
         }
+    }
+
+    void ThrowMoney(float angle,float distance)
+    {
+        tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
+        Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
+        tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
+        tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
+        SoundManager.inst.PlaySFXOneShot(5);
     }
 }

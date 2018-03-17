@@ -7,7 +7,9 @@ public class GameStateManager {
 
 	public enum GameState
 	{
-        Title,
+        TitleThrow,
+        TitleWaitInput,
+        TitlePlayStart,
 		OpenSequence,
 		GamePlay,
         VictorySequence,
@@ -44,7 +46,7 @@ public class GameStateManager {
             case GameState.GamePlay:
                 SoundManager.inst.PlayAmbient(0, true);
                 SoundManager.inst.PlayAmbient(2, true);
-                SoundManager.inst.PlayAmbient(3, true);
+                SoundManager.inst.PlayAmbient(3, false);
     			break;
             case GameState.OpenSequence:
                 SoundManager.inst.PlayBGM(1);
