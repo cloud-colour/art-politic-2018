@@ -91,8 +91,7 @@ public class CorrupterManager : MonoBehaviour
             if (corrupterList.Value.Count > 0)
                 return;
         }
-
-        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictorySequence);
+		SequenceManager.instance.StartEndSequence();
     }
 
     private void SetAllActiveCollider(CorrupterType type, bool enable)

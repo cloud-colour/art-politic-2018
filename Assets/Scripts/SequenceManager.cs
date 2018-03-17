@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class SequenceManager : MonoBehaviour
 {
+	public static SequenceManager instance;
+	void Awake()
+	{
+		if(instance == null)
+			instance = this;
+	}
+
 	[SerializeField] Animator mainAnim;
 
 	[Header("Debug")]
@@ -16,7 +23,12 @@ public class SequenceManager : MonoBehaviour
 			mainAnim.SetTrigger("DebugSkipIntro");
 		}
 	}
-	
+
+	public void StartEndSequence()
+	{
+		mainAnim.SetTrigger("End");
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
