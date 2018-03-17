@@ -55,7 +55,6 @@ public class GameStateManager {
             case GameState.VictorySequence:
                 //Trigger Victory
                 SoundManager.inst.PlayBGM(2);
-                ChangeState(GameState.VictoryWaintInput);
     			break;
 
             case GameState.VictoryWaintInput:
