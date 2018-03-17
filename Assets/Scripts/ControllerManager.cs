@@ -67,7 +67,7 @@ public class ControllerManager : MonoBehaviour {
         if(GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
 		{
             intervalTime += Time.deltaTime;
-            if (intervalTime >= 0.5f)
+            if (intervalTime >= 0.2f)
             {
                 dragTime = Time.deltaTime * Random.Range(6, 7); 
                 ThrowMoney(Random.Range(20, 60), Random.Range(3, 6) / 10f);
