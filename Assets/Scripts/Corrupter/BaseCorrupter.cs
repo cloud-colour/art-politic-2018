@@ -38,14 +38,7 @@ public class BaseCorrupter : MonoBehaviour {
         cash.SetActive(false);
 		this.GetComponent<BoxCollider>().enabled = false;
     }
-
-	//logic in title scene
-	protected void GotCashTitle(GameObject cash)
-	{
-		SoundManager.inst.PlaySFXOneShot(4);
-		cash.SetActive(false);
-	}
-
+    
 	//called in "Action" animation
 	public void DespawnCorrupter()
 	{

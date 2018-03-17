@@ -8,6 +8,7 @@ public class GameStateManager {
 	public enum GameState
 	{
         TitleThrow,
+        TitleStopThrow,
         TitleWaitInput,
         TitlePlayStart,
 		OpenSequence,
