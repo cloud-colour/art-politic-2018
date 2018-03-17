@@ -48,13 +48,4 @@ public class Cop : BaseCorrupter {
             GotCash(col.gameObject);
         }
     }
-
-
-
-	override protected void GotCash(GameObject cash)
-	{
-        SoundManager.inst.PlaySFXOneShot(4);
-		cash.SetActive(false);
-		this.GetComponent<Collider>().enabled = false;
-	}
 }

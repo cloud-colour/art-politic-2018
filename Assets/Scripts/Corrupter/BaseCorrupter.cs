@@ -36,7 +36,7 @@ public class BaseCorrupter : MonoBehaviour {
         SoundManager.inst.PlaySFXOneShot(4);
         CorrupterManager.Despawn(this);
         cash.SetActive(false);
-		this.GetComponent<Collider>().enabled = false;
+		this.GetComponent<BoxCollider>().enabled = false;
     }
 
 	//called in "Action" animation
