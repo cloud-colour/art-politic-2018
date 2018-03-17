@@ -7,14 +7,19 @@ public class MainMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SoundManager.inst.PlayBGM(0);
-        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.Title);
+        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitleThrow);
+        Invoke("ChangeGameStateToWaitInput",3f);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GameSceneManager.GetInstance().GoToNextStage();
-        }
+	void Update () 
+    {
+        
 	}
+
+
+    void ChangeGameStateToWaitInput()
+    {
+        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitleWaitInput);
+    }
 }
