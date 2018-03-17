@@ -33,6 +33,7 @@ public class Soldier : BaseCorrupter {
                         closestPublicServant = publicServant as PublicServant;
                     }
                 }
+                SoundManager.inst.PlaySFX(6);
                 closestPublicServant.Die();
             }
 

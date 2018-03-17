@@ -189,7 +189,7 @@ AudioSource:
   m_GameObject: {fileID: 1731548982434642}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: dbddadfa336bf4f6d9e34ddb886e39dd,
+  OutputAudioMixerGroup: {fileID: 243500539982282106, guid: dbddadfa336bf4f6d9e34ddb886e39dd,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -277,6 +277,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6c18a18bef65d400bbb0c32c5f363463, type: 3}
   - {fileID: 8300000, guid: e40211a84c5744ebf9e6cd20709b4fe9, type: 3}
   - {fileID: 8300000, guid: 9d23f6632646e4b009b226c05231c453, type: 3}
-  RawSFX: []
-  BGMAudioSource: {fileID: 82337870448569654}
-  SFXAudioSource: {fileID: 82724831113668602}
+  RawSFX:
+  - {fileID: 8300000, guid: f906e45dc604e4b92ba3b39c07719eae, type: 3}
+  - {fileID: 8300000, guid: 9345d754a1e9e4c229aad32100b5e621, type: 3}
+  - {fileID: 8300000, guid: f6a097217b7b34c108a9ae8ce82336dd, type: 3}
+  - {fileID: 8300000, guid: e9a311131f46c4ac2940a5cf0af4fb13, type: 3}
+  - {fileID: 8300000, guid: 9f990bef1e4714ea4a6792dd291aa674, type: 3}
+  - {fileID: 8300000, guid: 53f06af6770ec433db559353e056ff8c, type: 3}
+  - {fileID: 8300000, guid: 3cea9be75e738414ab076c4c629ae674, type: 3}
+  - {fileID: 8300000, guid: 79733ec31d5604eefad9908238557706, type: 3}
+  - {fileID: 8300000, guid: 27534b1beaf124fadadec05a074a2708, type: 3}
+  - {fileID: 8300000, guid: 6f8ba56d2072d47919ab0adad0f33be7, type: 3}
+  BGMAudioSource: {fileID: 82724831113668602}
+  SFXAudioSource: {fileID: 82337870448569654}
