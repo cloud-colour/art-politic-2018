@@ -5,6 +5,7 @@ using UnityEngine;
 public class StageAnimEvent : MonoBehaviour
 {
 	[SerializeField] Animation uiAnim;
+	[SerializeField] GameObject clickText;
 
 	public void ShowUI()
 	{
@@ -39,6 +40,12 @@ public class StageAnimEvent : MonoBehaviour
 
     public void EndVictory()
     {
+		clickText.SetActive(true);
         GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictoryWaintInput);
     }
+
+	public void StartVictory()
+	{
+		GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictorySequence);
+	}
 }
