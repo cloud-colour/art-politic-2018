@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4067119683129214}
   - component: {fileID: 212755382770534688}
-  - component: {fileID: 114052332086710182}
   - component: {fileID: 65784823843835608}
+  - component: {fileID: 114769895527449970}
   m_Layer: 8
   m_Name: Officer
   m_TagString: Untagged
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.74, y: 1.4, z: 0.2}
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &114052332086710182
+--- !u!114 &114769895527449970
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1752100108713658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed0d74bc96f04aaba8aae131d5a4377, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bf2ba33e9d0641e8ae96c20ede58a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CorrupterManager: {fileID: 0}

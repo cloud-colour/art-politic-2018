@@ -1,6 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+public enum CorrupterType
+{
+    Police,
+    Officer,
+    PublicServant,
+    Soldier
+}
 
 public class CorrupterManager : MonoBehaviour 
 {
@@ -17,29 +26,43 @@ public class CorrupterManager : MonoBehaviour
 	void Start () {
         currentTime = 0;
         corrupters = new Dictionary<int, List<BaseCorrupter>>();
-        ///Hard Code for now
-        corrupters[0] = new List<BaseCorrupter>();
-        var polices = gameObject.transform.GetComponentsInChildren<BaseCorrupter>();
-        foreach (var police in polices)
+        foreach (CorrupterType suit in Enum.GetValues(typeof(CorrupterType)))
         {
-            police.CorrupterID = 0;
-            police.CorrupterManager = this;
-            corrupters[0].Add(police);
+            corrupters[(int)suit] = new List<BaseCorrupter>();
         }
-        ///Hard Code for now
+        Init();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-        return;
-
-        currentTime += Time.deltaTime;
-        if (currentTime >= cooldownSpawn)
+    void Init()
+    {
+        var corruptersList = gameObject.transform.GetComponentsInChildren<BaseCorrupter>();
+        foreach (var corrupter in corruptersList)
         {
-            Spawn(Random.Range(0,2));
-            currentTime = 0;
+            if (corrupter is Cop)
+            {
+                corrupter.CorrupterID = (int)CorrupterType.Police;
+                corrupters[(int)CorrupterType.Police].Add(corrupter);
+            }
+            if(corrupter is Officer)
+            {
+                corrupter.CorrupterID = (int)CorrupterType.Officer;
+                corrupters[(int)CorrupterType.Officer].Add(corrupter);
+            }
+            if(corrupter is PublicServant)
+            {
+                corrupter.CorrupterID = (int)CorrupterType.PublicServant;
+                corrupters[(int)CorrupterType.PublicServant].Add(corrupter);
+            }
+            if(corrupter is Soldier)
+            {
+                corrupter.CorrupterID = (int)CorrupterType.Soldier;
+                corrupters[(int)CorrupterType.Soldier].Add(corrupter);
+            }
+            corrupter.CorrupterManager = this;
         }
+    }
+	
+	void Update () {
 
 	}
 

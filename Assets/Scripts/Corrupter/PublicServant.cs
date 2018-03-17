@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cop : BaseCorrupter {
+public class PublicServant : BaseCorrupter {
 
 	// Use this for initialization
 	void Start () {
@@ -18,10 +18,12 @@ public class Cop : BaseCorrupter {
     {
         if(cashCheck(col))
         {
-            if (CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count == 0)
-            {
-                GotCash(col.gameObject);
-            }
+            GotCash(col.gameObject);
         }
+    }
+
+    public void Die()
+    {
+        CorrupterManager.Despawn(this);
     }
 }
