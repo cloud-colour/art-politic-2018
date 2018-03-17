@@ -91,6 +91,7 @@ public class SoundManager : MonoBehaviour {
 
         AudioSource tmpAudio = Instantiate(AmbientAudioSource, this.transform).GetComponent<AudioSource>();
         tmpAudio.clip = RawAmbient[index];
+        tmpAudio.loop = loop;
         tmpAudio.Play();
         AmbientAudioSourceList.Add(tmpAudio);
     }

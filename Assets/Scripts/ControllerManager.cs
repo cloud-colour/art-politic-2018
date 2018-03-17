@@ -30,7 +30,7 @@ public class ControllerManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () 
+    void FixedUpdate () 
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -44,6 +44,11 @@ public class ControllerManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             GameSceneManager.GetInstance().ReloadScene();
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            GameSceneManager.GetInstance().ReturnToWelcome();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -99,8 +104,6 @@ public class ControllerManager : MonoBehaviour {
             SoundManager.inst.PlaySFXOneShot(5);
 			cacheTrail = null;
 
-            if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleWaitInput)
-                GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitlePlayStart);
         }
 
 		//trail renderer

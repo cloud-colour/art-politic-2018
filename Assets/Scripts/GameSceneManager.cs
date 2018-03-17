@@ -7,8 +7,6 @@ public class GameSceneManager {
 
     static GameSceneManager Inst;
 
-    private int currectScene = 0;
-
     public static GameSceneManager GetInstance()
     {
         if (Inst == null)
@@ -19,28 +17,35 @@ public class GameSceneManager {
 
     public void GoToNextStage()
     {
-        if (currectScene == SceneManager.sceneCountInBuildSettings-1)
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            ReturnToWelcome();
             return;
-        currectScene++;
-        LoadCurrentScene();
+        }
+
+        LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void GoToPrevStage()
     {
-        if (currectScene == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
             return;
-        currectScene--;
-        LoadCurrentScene();
+        LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex-1);
     }
 
     public void ReloadScene()
     {
-        LoadCurrentScene();
+        LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void LoadCurrentScene()
+    public void ReturnToWelcome()
+    {
+        LoadSceneByIndex(0);
+    }
+
+    private void LoadSceneByIndex(int index)
     {
 
-        SceneManager.LoadScene(currectScene);
+        SceneManager.LoadScene(index);
     }
 }

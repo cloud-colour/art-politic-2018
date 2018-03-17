@@ -45,7 +45,15 @@ public class TitleCop : BaseCorrupter {
 			transform.localScale = Vector3.one;
 			anim.Stop();
 			anim.Play("Action");
-            GotCashTitle(col.gameObject);
+            GotCash(col.gameObject);
         }
+    }
+
+    protected override void GotCash(GameObject cash)
+    {
+        SoundManager.inst.PlaySFXOneShot(4);
+        cash.SetActive(false);
+        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleWaitInput)
+            GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitlePlayStart);
     }
 }
