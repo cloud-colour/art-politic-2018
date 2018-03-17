@@ -13,8 +13,16 @@ public class ControllerManager : MonoBehaviour {
 
     private float dragTime;
 
-    public int force;
-    public int distanceFactor;
+    public float force;
+    public float distanceFactor;
+
+	[Header("Trail Config")]
+	[SerializeField]
+	private Transform trailPrefab;
+	[SerializeField]
+	private float trailDragDuration;
+	private Transform cacheTrail;
+
 	void Start () 
     {
         
@@ -37,6 +45,7 @@ public class ControllerManager : MonoBehaviour {
             tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
             dragTime = 0;
             startPos = Input.mousePosition;
+			cacheTrail = CloneTrail();
         }
 
         dragTime += Time.deltaTime;
@@ -51,7 +60,24 @@ public class ControllerManager : MonoBehaviour {
             tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
 
             Debug.Log("Start : " + startPos + " End : " + endPos + " angle : "+angle);
+			cacheTrail = null;
         }
 
+		//trail renderer
+		if(Input.GetMouseButton(0) && dragTime < trailDragDuration)
+		{
+			if(cacheTrail)
+			{
+				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				touchPos.z = -1.96f; //hardcoded trail z pos
+				cacheTrail.transform.position = touchPos;
+			}
+		}
+	}
+
+	Transform CloneTrail()
+	{
+		var clone = Instantiate(trailPrefab,Camera.main.ScreenToWorldPoint(Input.mousePosition),Quaternion.identity,null);
+		return clone;
 	}
 }
