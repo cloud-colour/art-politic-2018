@@ -53,6 +53,11 @@ public class CorrupterManager : MonoBehaviour
             }
             corrupter.CorrupterManager = this;
         }
+
+
+        if (GetCorrupterByID((int)CorrupterType.Officer).Count > 0)
+            SetAllActiveCollider(CorrupterType.Police, false);
+
     }
 	
 	void Update () {
@@ -62,6 +67,9 @@ public class CorrupterManager : MonoBehaviour
     public void Despawn(BaseCorrupter corrupter)
     {
         corrupters[corrupter.CorrupterID].Remove(corrupter);
+
+        if (GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
+            SetAllActiveCollider(CorrupterType.Police, true);
         CheckServivedTheLawsuit();
     }
 
@@ -82,5 +90,13 @@ public class CorrupterManager : MonoBehaviour
         }
 
         GameSceneManager.GetInstance().GoToNextStage();
+    }
+
+    private void SetAllActiveCollider(CorrupterType type, bool enable)
+    {
+        foreach (var cop in GetCorrupterByID((int)type))
+        {
+			cop.GetComponent<BoxCollider>().enabled = enable;
+        }
     }
 }

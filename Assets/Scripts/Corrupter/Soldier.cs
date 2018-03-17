@@ -44,6 +44,7 @@ public class Soldier : BaseCorrupter {
 			transform.localScale = Vector3.one;
 			anim.Stop();
 			anim.Play("Action");
+
             GotCash(col.gameObject);
         }
     }
@@ -53,7 +54,7 @@ public class Soldier : BaseCorrupter {
 		var publicServants = CorrupterManager.GetCorrupterByID((int)CorrupterType.PublicServant);
 		if (publicServants.Count > 0)
 		{
-			PublicServant closestPublicServant = new PublicServant();
+			PublicServant[] closestPublicServantArray = new PublicServant[1];
 			float closestDistance = Screen.width;
 			float distance;
 			foreach (var publicServant in publicServants)
@@ -62,11 +63,12 @@ public class Soldier : BaseCorrupter {
 				if(closestDistance > distance)
 				{
 					closestDistance = distance;
-					closestPublicServant = publicServant as PublicServant;
+					closestPublicServantArray[0] = publicServant as PublicServant;
 				}
 			}
-			SoundManager.inst.PlaySFX(6);
-			closestPublicServant.Die();
+			SoundManager.inst.PlaySFXOneShot(6);
+			if(closestPublicServantArray[0] != null)
+				closestPublicServantArray[0].Die();
 		}
 	}
 }

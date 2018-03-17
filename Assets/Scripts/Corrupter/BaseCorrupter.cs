@@ -33,7 +33,7 @@ public class BaseCorrupter : MonoBehaviour {
 
     virtual protected void GotCash(GameObject cash)
     {
-        SoundManager.inst.PlaySFX(4);
+        SoundManager.inst.PlaySFXOneShot(4);
         CorrupterManager.Despawn(this);
         cash.SetActive(false);
 		this.GetComponent<Collider>().enabled = false;
