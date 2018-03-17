@@ -9,6 +9,9 @@ public class PublicServant : BaseCorrupter {
 
     public float radius;
     public float power;
+	public Transform forceField;
+	public Transform forceParent;
+
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +50,13 @@ public class PublicServant : BaseCorrupter {
             cash.velocity = Vector3.zero;
             cash.AddExplosionForce(power, transform.position, radius);
 			cash.gameObject.layer = LayerMask.NameToLayer("CleanCash");
+
+			var clone = Instantiate(forceField,Vector3.zero,Quaternion.identity,forceParent);
+			clone.localPosition = Vector3.zero;
+			var angle = Mathf.Atan2(col.contacts[0].normal.y,col.contacts[0].normal.x)*Mathf.Rad2Deg;
+			clone.eulerAngles = new Vector3(0,0,angle);
+			//clone.position = col.contacts[0].point;
+
         }
     }
 
