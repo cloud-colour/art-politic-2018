@@ -21,7 +21,19 @@ public class Soldier : BaseCorrupter {
             var publicServants = CorrupterManager.GetCorrupterByID((int)CorrupterType.PublicServant);
             if (publicServants.Count > 0)
             {
-                ((PublicServant)publicServants[Random.Range(0, publicServants.Count)]).Die();
+                PublicServant closestPublicServant = new PublicServant();
+                float closestDistance = Screen.width;
+                float distance;
+                foreach (var publicServant in publicServants)
+                {
+                    distance = Vector3.Distance(this.transform.position, publicServant.transform.position);
+                    if(closestDistance > distance)
+                    {
+                        closestDistance = distance;
+                        closestPublicServant = publicServant as PublicServant;
+                    }
+                }
+                closestPublicServant.Die();
             }
 
             GotCash(col.gameObject);
