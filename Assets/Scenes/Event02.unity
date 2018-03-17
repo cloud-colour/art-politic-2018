@@ -616,7 +616,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 370894805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.6, y: -2.27, z: -0.97}
+  m_LocalPosition: {x: -19.6, y: -2.27, z: 0.02}
   m_LocalScale: {x: 1.5962499, y: 1.5962499, z: 1.5962499}
   m_Children: []
   m_Father: {fileID: 1664955921}
@@ -2906,6 +2906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiAnim: {fileID: 1589849395}
+  clickText: {fileID: 0}
 --- !u!95 &1664955923
 Animator:
   serializedVersion: 3
