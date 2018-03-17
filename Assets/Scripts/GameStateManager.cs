@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager {
 
@@ -45,17 +46,25 @@ public class GameStateManager {
 		switch (state)
 		{
             case GameState.GamePlay:
-                SoundManager.inst.PlayAmbient(0, true);
-                SoundManager.inst.PlayAmbient(2, true);
+                if (SceneManager.GetActiveScene().buildIndex == 5)
+                    SoundManager.inst.PlayAmbient(2, true);
                 SoundManager.inst.PlayAmbient(3, false);
     			break;
             case GameState.OpenSequence:
                 SoundManager.inst.PlayBGM(1);
                 SoundManager.inst.ClearAllAmbient();
+                if (SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4 )
+                {
+                    SoundManager.inst.PlayAmbient(1, true);
+                }
+                if (SceneManager.GetActiveScene().buildIndex == 5)
+                {
+                    SoundManager.inst.PlayAmbient(0, true);
+                }
     			break;
             case GameState.VictorySequence:
                 //Trigger Victory
-                SoundManager.inst.PlayBGM(2);
+                SoundManager.inst.PlayBGM(3);
     			break;
 
             case GameState.VictoryWaintInput:
