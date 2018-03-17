@@ -20,10 +20,21 @@ public class BaseCorrupter : MonoBehaviour {
 
     virtual protected void OnCollisionEnter (Collision col)
     {
-        if(col.gameObject.tag == "cash")
+        if(cashCheck(col))
         {
-            CorrupterManager.Despawn(this);
-            col.gameObject.SetActive(false);
+            GotCash(col.gameObject);
         }
+    }
+
+    protected bool cashCheck(Collision col)
+    {
+        return col.gameObject.tag == "cash" && col.gameObject.activeInHierarchy;
+    }
+
+    protected void GotCash(GameObject cash)
+    {
+        CorrupterManager.Despawn(this);
+        cash.SetActive(false);
+		this.GetComponent<Collider>().enabled = false;
     }
 }

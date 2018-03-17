@@ -38,17 +38,16 @@ public class Cop : BaseCorrupter {
 
     override protected void OnCollisionEnter (Collision col)
     {
-        if(col.gameObject.tag == "cash")
+        if(cashCheck(col))
         {
-            if (CorrupterManager.GetCorrupterByID(1).Count == 0)
+            if (CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count == 0)
             {
 				isHappy = true;
-				col.gameObject.SetActive(false);
-				this.GetComponent<Collider>().enabled = false;
 
 				transform.localScale = Vector3.one;
 				anim.Stop();
 				anim.Play("Action");
+                GotCash(col.gameObject);
             }
         }
     }
