@@ -6,11 +6,15 @@ public class SoundManager : MonoBehaviour {
 
     public List<AudioClip> RawBGM;
     public List<AudioClip> RawSFX;
+    public List<AudioClip> RawAmbient;
 
     public static SoundManager inst;
 
     [SerializeField] AudioSource BGMAudioSource;
     [SerializeField] AudioSource SFXAudioSource;
+    [SerializeField] AudioSource AmbientAudioSource;
+
+    private List<AudioSource> AmbientAudioSourceList;
 
     void Awake()
     {
@@ -22,8 +26,11 @@ public class SoundManager : MonoBehaviour {
             inst = this;
         }
 
+        AmbientAudioSourceList = new List<AudioSource>();
+
         if(FindObjectsOfType(GetType()).Length > 1)
             Destroy(gameObject);
+
     }
 
     public void PlayBGM(int index)
@@ -69,7 +76,33 @@ public class SoundManager : MonoBehaviour {
         return SFXAudioSource.isPlaying;
     }
 
+    public void PlayAmbient(int index,bool loop = false)
+    {
+        foreach (AudioSource audio in AmbientAudioSourceList)
+        {
+            if (!audio.isPlaying)
+            {
+                audio.clip = RawAmbient[index];
+                audio.loop = loop;
+                audio.Play();
+                return;
+            }
+        }
 
+        AudioSource tmpAudio = Instantiate(AmbientAudioSource, this.transform).GetComponent<AudioSource>();
+        tmpAudio.clip = RawAmbient[index];
+        tmpAudio.Play();
+        AmbientAudioSourceList.Add(tmpAudio);
+    }
+
+    public void ClearAllAmbient()
+    {
+        foreach (AudioSource audio in AmbientAudioSourceList)
+        {
+            Destroy(audio);
+        }
+        AmbientAudioSourceList.Clear();
+    }
 
     public static IEnumerator FadeOut (AudioSource audioSource, float FadeTime,AudioClip clip) {
         float startVolume = audioSource.volume;

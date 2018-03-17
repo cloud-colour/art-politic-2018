@@ -10,6 +10,8 @@ public class StageAnimEvent : MonoBehaviour
 	{
 		uiAnim.gameObject.SetActive(true);
 		uiAnim.Play();
+
+        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.GamePlay);
 	}
 
 	public void SpawnStartMoney()
@@ -33,4 +35,10 @@ public class StageAnimEvent : MonoBehaviour
 			yield return 0;
 		}
 	}
+
+
+    public void EndVictory()
+    {
+        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictoryWaintInput);
+    }
 }
