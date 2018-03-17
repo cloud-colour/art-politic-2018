@@ -37,4 +37,10 @@ public class BaseCorrupter : MonoBehaviour {
         cash.SetActive(false);
 		this.GetComponent<Collider>().enabled = false;
     }
+
+	//called in "Action" animation
+	public void DespawnCorrupter()
+	{
+		CorrupterManager.Despawn(this);
+	}
 }

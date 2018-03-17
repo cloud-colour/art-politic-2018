@@ -24,6 +24,7 @@ public class PublicServant : BaseCorrupter {
             Rigidbody cash = col.gameObject.GetComponent<Rigidbody>();
             cash.velocity = Vector3.zero;
             cash.AddExplosionForce(power, transform.position, radius);
+			cash.gameObject.layer = LayerMask.NameToLayer("CleanCash");
         }
     }
 

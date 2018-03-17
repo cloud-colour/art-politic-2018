@@ -40,7 +40,7 @@ public class Cop : BaseCorrupter {
     {
         if(cashCheck(col))
         {
-            if (CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count == 0)
+            if (CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
             {
 				isHappy = true;
 
@@ -49,14 +49,14 @@ public class Cop : BaseCorrupter {
 				anim.Play("Action");
                 GotCash(col.gameObject);
             }
+			else
+			{
+				col.gameObject.layer = LayerMask.NameToLayer("CleanCash");
+			}
         }
     }
 
-	//called in "Action" animation
-	public void DespawnCorrupter()
-	{
-		CorrupterManager.Despawn(this);
-	}
+
 
 	override protected void GotCash(GameObject cash)
 	{
