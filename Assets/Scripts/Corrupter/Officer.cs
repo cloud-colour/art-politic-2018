@@ -53,6 +53,6 @@ public class Officer : BaseCorrupter {
     {
         base.GotCash(cash);
 
-        SoundManager.inst.PlaySFXOneShot(14);
+        SoundManager.inst.PlaySFXOneShot(16);
     }
 }
