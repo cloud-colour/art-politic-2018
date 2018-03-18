@@ -56,7 +56,7 @@ public class PublicServant : BaseCorrupter {
 			var angle = Mathf.Atan2(col.contacts[0].normal.y,col.contacts[0].normal.x)*Mathf.Rad2Deg;
 			clone.eulerAngles = new Vector3(0,0,angle);
 			//clone.position = col.contacts[0].point;
-
+            SoundManager.inst.PlaySFXOneShot(15);
         }
     }
 
@@ -65,6 +65,8 @@ public class PublicServant : BaseCorrupter {
 		isHappy = true;
 		anim.Play("Action");
         CorrupterManager.Despawn(this);
+
+        SoundManager.inst.PlaySFXOneShot(12);
 		this.GetComponent<Collider>().enabled = false;
         //this.gameObject.SetActive(false);
     }

@@ -40,6 +40,7 @@ public class StageAnimEvent : MonoBehaviour
 
     public void EndVictory()
     {
+        SoundManager.inst.PlaySFXOneShot(9);
 		clickText.SetActive(true);
         GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictoryWaintInput);
     }
@@ -48,4 +49,9 @@ public class StageAnimEvent : MonoBehaviour
 	{
 		GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictorySequence);
 	}
+
+    public void PlaySFXByID(int index)
+    {
+        SoundManager.inst.PlaySFXOneShot(index);
+    }
 }

@@ -48,4 +48,11 @@ public class Officer : BaseCorrupter {
 			GotCash(col.gameObject);
 		}
 	}
+
+    protected override void GotCash(GameObject cash)
+    {
+        base.GotCash(cash);
+
+        SoundManager.inst.PlaySFXOneShot(14);
+    }
 }
