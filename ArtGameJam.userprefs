@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameStateManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\SpriteLightTint.shader">
     <Files>
       <File FileName="Assets\Scripts\StageAnimEvent.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Timer.cs" Line="1" Column="1" />
@@ -15,9 +15,10 @@
       <File FileName="Assets\Scripts\AutoDestroy.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SequenceManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameStateManager.cs" Line="52" Column="1" />
+      <File FileName="Assets\Scripts\GameStateManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SoundManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameSceneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\SpriteLightTint.shader" Line="66" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
