@@ -2813,6 +2813,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 4.6666665
+    functionName: PlaySFXByID
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 11
+    messageOptions: 0
   - time: 17.816668
     functionName: SpawnStartMoney
     data: 
