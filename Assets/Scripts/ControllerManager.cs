@@ -92,9 +92,11 @@ public class ControllerManager : MonoBehaviour {
             startPos = Input.mousePosition;
 			cacheTrail = CloneTrail();
         }
-
-        dragTime += Time.deltaTime;
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0))
+        {
+            dragTime += Time.deltaTime;
+        }
+        if (dragTime > 0 && !Input.GetMouseButton(0))
         {
             endPos = Input.mousePosition;
             Vector3 targetDir = startPos - endPos;
@@ -103,7 +105,7 @@ public class ControllerManager : MonoBehaviour {
             ThrowMoney(angle, distance);
             SoundManager.inst.PlaySFXOneShot(5);
 			cacheTrail = null;
-
+            dragTime = 0;
         }
 
 		//trail renderer
