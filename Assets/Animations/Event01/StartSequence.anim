@@ -925,6 +925,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: 4.366667
+    functionName: PlaySFXByID
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 10
+    messageOptions: 0
   - time: 12.983334
     functionName: SpawnStartMoney
     data: 
