@@ -40,7 +40,7 @@ public class StageAnimEvent : MonoBehaviour
 
     public void EndVictory()
     {
-        SoundManager.inst.PlaySFXOneShot(9);
+//        SoundManager.inst.PlaySFXOneShot(9);
 		clickText.SetActive(true);
         GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.VictoryWaintInput);
     }
