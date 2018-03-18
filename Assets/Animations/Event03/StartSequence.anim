@@ -784,7 +784,7 @@ AnimationClip:
         tangentMode: 103
       - serializedVersion: 2
         time: 14.366667
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -818,7 +818,7 @@ AnimationClip:
         tangentMode: 103
       - serializedVersion: 2
         time: 14.366667
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -861,6 +861,22 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_IsActive
     path: Victim/Goodgirl
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: BadGuy/Dance4
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
@@ -1020,6 +1036,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 3972708274
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1428846251
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -2239,7 +2262,7 @@ AnimationClip:
         tangentMode: 103
       - serializedVersion: 2
         time: 14.366667
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -2495,7 +2518,7 @@ AnimationClip:
         tangentMode: 103
       - serializedVersion: 2
         time: 14.366667
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -2941,6 +2964,22 @@ AnimationClip:
     attribute: m_LocalScale.z
     path: BadGuy/Gun
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: BadGuy/Dance4
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
