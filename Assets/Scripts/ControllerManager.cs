@@ -26,7 +26,8 @@ public class ControllerManager : MonoBehaviour {
     private float intervalTime;
 	void Start () 
     {
-        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
 	}
 
 	// Update is called once per frame
@@ -78,6 +79,7 @@ public class ControllerManager : MonoBehaviour {
                 ThrowMoney(Random.Range(20, 60), Random.Range(3, 6) / 10f);
                 intervalTime = 0;
             }
+            dragTime = 0;
 		}
 
         if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay && 
