@@ -78,6 +78,7 @@ public class ControllerManager : MonoBehaviour {
                 ThrowMoney(Random.Range(20, 60), Random.Range(3, 6) / 10f);
                 intervalTime = 0;
             }
+            dragTime = 0;
 		}
 
         if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay && 
