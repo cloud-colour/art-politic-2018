@@ -26,7 +26,8 @@ public class ControllerManager : MonoBehaviour {
     private float intervalTime;
 	void Start () 
     {
-        GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
 	}
 
 	// Update is called once per frame
