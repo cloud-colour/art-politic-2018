@@ -435,25 +435,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 6.4333334
-        value: {x: 0.8253243, y: 0.6336099, z: 2.75108}
+        value: {x: 1.9066573, y: 1.4637299, z: 6.3558283}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - serializedVersion: 2
         time: 6.45
-        value: {x: 5.5807824, y: 4.185148, z: 5.580784}
+        value: {x: 12.893434, y: 9.669027, z: 12.893436}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - serializedVersion: 2
         time: 6.516667
-        value: {x: 8.965047, y: 1.851655, z: 6.3358192}
+        value: {x: 20.71227, y: 4.277841, z: 14.637833}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
       - serializedVersion: 2
         time: 6.55
-        value: {x: 10.178932, y: 0.0001, z: 6.411926}
+        value: {x: 23.516771, y: 0.00009982204, z: 14.813665}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
         tangentMode: 0
@@ -473,6 +473,12 @@ AnimationClip:
         tangentMode: 103
       - serializedVersion: 2
         time: 6.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 6.4333334
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -488,6 +494,28 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_IsActive
     path: Fatman/gunshot
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 6.6
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Panther/Bloodspill
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
@@ -578,6 +606,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 885297919
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 999785021
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -1728,6 +1763,12 @@ AnimationClip:
         tangentMode: 103
       - serializedVersion: 2
         time: 6.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 6.4333334
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -1750,25 +1791,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 6.4333334
-        value: 0.8253243
+        value: 1.9066573
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.45
-        value: 5.5807824
+        value: 12.893434
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.516667
-        value: 8.965047
+        value: 20.71227
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.55
-        value: 10.178932
+        value: 23.516771
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -1784,25 +1825,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 6.4333334
-        value: 0.6336099
+        value: 1.4637299
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.45
-        value: 4.185148
+        value: 9.669027
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.516667
-        value: 1.851655
+        value: 4.277841
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.55
-        value: 0.0001
+        value: 0.00009982204
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -1818,25 +1859,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 6.4333334
-        value: 2.75108
+        value: 6.3558283
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.45
-        value: 5.580784
+        value: 12.893436
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.516667
-        value: 6.3358192
+        value: 14.637833
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
       - serializedVersion: 2
         time: 6.55
-        value: 6.411926
+        value: 14.813665
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -1846,6 +1887,28 @@ AnimationClip:
     attribute: m_LocalScale.z
     path: Fatman/gunshot
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 6.6
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Panther/Bloodspill
+    classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
