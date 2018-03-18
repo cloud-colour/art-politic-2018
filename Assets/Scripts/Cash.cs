@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Cash : MonoBehaviour {
 
+    private Rigidbody rigid;
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+    {
+        rigid = GetComponent<Rigidbody>();
+        rigid.sleepThreshold = 0.3f;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+    {
+        
+        if (rigid.IsSleeping())
+        {
+            gameObject.layer = LayerMask.NameToLayer("CleanCash");
+        }
 	}
 
     void OnCollisionEnter (Collision col)
@@ -20,5 +28,10 @@ public class Cash : MonoBehaviour {
 //        {
 //            gameObject.SetActive(false);
 //        }
+    }
+
+    public void Reset()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Cash");
     }
 }
