@@ -218,7 +218,8 @@ public class ControllerManager : MonoBehaviour {
     {
         tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
         Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-        tmpCash.GetComponent<Rigidbody>().AddForce(dir * ( (force / dragTime) * (distance * distanceFactor )));
+        float throwForce = (force / dragTime) * (distance * distanceFactor) * GameConfiguration.GetInstance().mouseSensivity;
+        tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce);
         tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
         SoundManager.inst.PlaySFXOneShot(5);
     }
