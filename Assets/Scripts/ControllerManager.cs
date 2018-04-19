@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InputState
+{
+    Idle,
+    Down,
+    Hold,
+    Up
+}
+
 public class ControllerManager : MonoBehaviour {
 
     private Vector3 startPos,endPos;
@@ -16,6 +24,8 @@ public class ControllerManager : MonoBehaviour {
     public float force;
     public float distanceFactor;
 
+    private InputState currentInput;
+
 	[Header("Trail Config")]
 	[SerializeField]
 	private Transform trailPrefab;
@@ -24,10 +34,14 @@ public class ControllerManager : MonoBehaviour {
 	private Transform cacheTrail;
 
     private float intervalTime;
+
+    private Dictionary<int,Vector3> dragTouchs;
 	void Start () 
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
+
+        dragTouchs = new Dictionary<int,Vector3>();
 	}
 
 	// Update is called once per frame
@@ -85,20 +99,72 @@ public class ControllerManager : MonoBehaviour {
         if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay && 
             GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.TitleWaitInput)
             return;
-
-
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
+        if (Input.touchCount > 0)
+        {
+            if(Input.touchCount > 3)
+            {
+                int checkMoveFinger = 0;
+                foreach(var touch in Input.touches)
+                {
+                    if(touch.phase == TouchPhase.Began)
+                    {
+                        if(!dragTouchs.ContainsKey(touch.fingerId))
+                            dragTouchs.Add(touch.fingerId,touch.position);
+                        else
+                            dragTouchs[touch.fingerId] = touch.position;
+                    }
+                    if(touch.phase == TouchPhase.Moved)
+                    {
+                        if(!dragTouchs.ContainsKey(touch.fingerId))
+                            continue;
+                        if(dragTouchs[touch.fingerId].y > touch.position.y)
+                            checkMoveFinger++;
+                    }
+                }
+                if(checkMoveFinger > 3)
+                {
+                    StartCoroutine(SpawnHeapOfMoney());
+                    dragTouchs.Clear();
+                }
+            }
+            else if(Input.touchCount == 1)
+            {
+                if(Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary)
+                    currentInput = InputState.Hold;
+                if(Input.GetTouch(0).phase == TouchPhase.Began)
+                {
+                    currentInput = InputState.Down;
+                    startPos = Input.GetTouch(0).position;
+                }
+            }
+        }else
+            currentInput = InputState.Up;
+#else
         if (Input.GetMouseButtonDown(0))
         {
-            
-            dragTime = 0;
+            currentInput = InputState.Down;
             startPos = Input.mousePosition;
-			cacheTrail = CloneTrail();
         }
         if (Input.GetMouseButton(0))
         {
+            currentInput = InputState.Hold;
+        }
+        if (!Input.GetMouseButton(0))
+        {
+            currentInput = InputState.Up;
+        }
+#endif
+        if (currentInput == InputState.Down)
+        {
+            dragTime = 0;
+			cacheTrail = CloneTrail();
+        }
+        if (currentInput == InputState.Hold)
+        {
             dragTime += Time.deltaTime;
         }
-        if (dragTime > 0 && !Input.GetMouseButton(0))
+        if (dragTime > 0 && currentInput == InputState.Up)
         {
             endPos = Input.mousePosition;
             Vector3 targetDir = startPos - endPos;
