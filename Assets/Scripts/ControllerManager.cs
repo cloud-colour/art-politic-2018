@@ -90,7 +90,7 @@ public class ControllerManager : MonoBehaviour {
             if (intervalTime >= 0.2f)
             {
                 dragTime = Time.deltaTime * Random.Range(6, 7); 
-                ThrowMoney(Random.Range(20, 60), Random.Range(3, 6) / 10f);
+                ThrowMoney(Random.Range(20, 60), Random.Range(6, 8) / 10f);
                 intervalTime = 0;
             }
             dragTime = 0;
