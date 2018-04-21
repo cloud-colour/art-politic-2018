@@ -36,6 +36,12 @@ public class ControllerManager : MonoBehaviour {
     private float intervalTime;
 
     private Dictionary<int,Vector3> dragTouchs;
+
+
+	//idle check
+	Vector3 lastMousePos;
+	float idleTime;
+
 	void Start () 
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
@@ -47,6 +53,24 @@ public class ControllerManager : MonoBehaviour {
 	// Update is called once per frame
     void FixedUpdate () 
     {
+		if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
+		{
+			if(Input.mousePosition == lastMousePos)
+			{
+				idleTime += Time.deltaTime;
+				DebugCanvas.Inst.SetRestartText(30 - idleTime);
+				if(idleTime >= 30)
+				{
+					DebugCanvas.Inst.Restart();
+				}
+			}
+			else
+			{
+				idleTime = 0;
+				lastMousePos = Input.mousePosition;
+			}
+		}
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             GameSceneManager.GetInstance().GoToNextStage();
