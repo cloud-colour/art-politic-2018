@@ -26,7 +26,7 @@ public class BaseCorrupter : MonoBehaviour {
         }
     }
 
-    protected bool cashCheck(Collision col)
+    virtual protected bool cashCheck(Collision col)
     {
         return col.gameObject.tag == "cash" && col.gameObject.activeInHierarchy;
     }
