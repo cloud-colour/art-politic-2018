@@ -53,21 +53,24 @@ public class ControllerManager : MonoBehaviour {
 	// Update is called once per frame
     void FixedUpdate () 
     {
-		if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
+		if(PlayerPrefs.GetInt("exhibition") == 1)
 		{
-			if(Input.mousePosition == lastMousePos)
+			if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
 			{
-				idleTime += Time.deltaTime;
-				DebugCanvas.Inst.SetRestartText(60 - idleTime);
-				if(idleTime >= 60)
+				if(Input.mousePosition == lastMousePos)
 				{
-					DebugCanvas.Inst.Restart();
+					idleTime += Time.deltaTime;
+					DebugCanvas.Inst.SetRestartText(60 - idleTime);
+					if(idleTime >= 60)
+					{
+						DebugCanvas.Inst.Restart();
+					}
 				}
-			}
-			else
-			{
-				idleTime = 0;
-				lastMousePos = Input.mousePosition;
+				else
+				{
+					idleTime = 0;
+					lastMousePos = Input.mousePosition;
+				}
 			}
 		}
 

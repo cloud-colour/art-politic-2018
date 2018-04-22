@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
-
     [SerializeField] Animation overlay;
+	[SerializeField] GameObject exhibitionLogos;
+
+	public bool isExhibitionBuild;
     bool isLoading;
 	// Use this for initialization
 	void Start () 
@@ -15,6 +17,11 @@ public class MainMenu : MonoBehaviour {
         SoundManager.inst.PlayBGM(0);
         GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.TitleThrow);
         Invoke("ChangeGameStateToWaitInput",6f);
+
+		PlayerPrefs.SetInt("exhibition",isExhibitionBuild?1:0);
+		//show logos on exhibitionbuild
+		if(exhibitionLogos != null)
+			exhibitionLogos.SetActive(isExhibitionBuild);
 	}
 	
 	// Update is called once per frame
