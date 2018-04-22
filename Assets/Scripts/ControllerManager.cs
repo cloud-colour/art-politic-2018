@@ -117,7 +117,7 @@ public class ControllerManager : MonoBehaviour {
             if (intervalTime >= 0.2f)
             {
                 dragTime = Time.deltaTime * Random.Range(6, 7); 
-                ThrowMoney(Random.Range(20, 60), Random.Range(6, 8) / 10f);
+                ThrowMoneyAuto(Random.Range(20, 60), Random.Range(6, 8) / 10f);
                 intervalTime = 0;
             }
             dragTime = 0;
@@ -250,4 +250,15 @@ public class ControllerManager : MonoBehaviour {
         tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
         SoundManager.inst.PlaySFXOneShot(5);
     }
+
+	//force mouse sensitivity = 1
+	void ThrowMoneyAuto(float angle,float distance)
+	{
+		tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
+		Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
+		float throwForce = (force / dragTime) * (distance * distanceFactor) * 1;
+		tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce);
+		tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
+		SoundManager.inst.PlaySFXOneShot(5);
+	}
 }
