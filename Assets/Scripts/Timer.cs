@@ -34,6 +34,6 @@ public class Timer : MonoBehaviour
 		}
 
 		timer = timer - Time.deltaTime/Mathf.CeilToInt(elapse/10f);
-		text.text = timer.ToString("00.000");
+		text.text = timer.ToString("00.00");
 	}
 }
