@@ -58,8 +58,8 @@ public class ControllerManager : MonoBehaviour {
 			if(Input.mousePosition == lastMousePos)
 			{
 				idleTime += Time.deltaTime;
-				DebugCanvas.Inst.SetRestartText(30 - idleTime);
-				if(idleTime >= 30)
+				DebugCanvas.Inst.SetRestartText(60 - idleTime);
+				if(idleTime >= 60)
 				{
 					DebugCanvas.Inst.Restart();
 				}

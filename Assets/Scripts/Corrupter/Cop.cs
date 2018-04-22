@@ -48,13 +48,4 @@ public class Cop : BaseCorrupter {
             GotCash(col.gameObject);
         }
     }
-
-	override protected bool cashCheck(Collision col)
-	{
-		if(CorrupterManager.GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
-			return col.gameObject.tag == "cash" && col.gameObject.activeInHierarchy;
-		else
-			return false;
-	}
-
 }
