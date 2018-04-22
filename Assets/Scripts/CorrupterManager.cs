@@ -99,6 +99,12 @@ public class CorrupterManager : MonoBehaviour
         foreach (var cop in GetCorrupterByID((int)type))
         {
 			cop.GetComponent<BoxCollider>().enabled = enable;
+
+			//hardcode police with special trigger collider
+			if(type == CorrupterType.Police)
+			{
+				cop.transform.Find("RedFlashCollider").GetComponent<BoxCollider>().enabled = !enable;
+			}
         }
     }
 }

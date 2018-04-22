@@ -25,7 +25,7 @@ public class Cop : BaseCorrupter {
 		}
 		else //play wiggle 1 or 2
 		{
-			anim.Play("Wiggle"+rand);
+			anim.Blend("Wiggle"+rand);
 		}
 
 		Invoke("DoRandomStuff",Random.Range(1f,5f));
