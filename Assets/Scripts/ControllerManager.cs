@@ -51,7 +51,7 @@ public class ControllerManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-    void FixedUpdate () 
+    void Update () 
     {
 		if(PlayerPrefs.GetInt("exhibition") == 1)
 		{
@@ -111,17 +111,7 @@ public class ControllerManager : MonoBehaviour {
             return;
         }
 
-        if(GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
-		{
-            intervalTime += Time.deltaTime;
-            if (intervalTime >= 0.2f)
-            {
-                dragTime = Time.deltaTime * Random.Range(6, 7); 
-                ThrowMoneyAuto(Random.Range(20, 60), Random.Range(6, 8) / 10f);
-                intervalTime = 0;
-            }
-            dragTime = 0;
-		}
+        
 
         if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay && 
             GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.TitleWaitInput)
@@ -191,17 +181,7 @@ public class ControllerManager : MonoBehaviour {
         {
             dragTime += Time.deltaTime;
         }
-        if (dragTime > 0 && currentInput == InputState.Up)
-        {
-            endPos = Input.mousePosition;
-            Vector3 targetDir = startPos - endPos;
-            float angle = Vector3.Angle(targetDir, Vector3.left);
-            float distance = targetDir.magnitude / Screen.width;
-            ThrowMoney(angle, distance);
-            SoundManager.inst.PlaySFXOneShot(5);
-			cacheTrail = null;
-            dragTime = 0;
-        }
+       
 
 		//trail renderer
 		if(Input.GetMouseButton(0) && dragTime < trailDragDuration)
@@ -220,6 +200,33 @@ public class ControllerManager : MonoBehaviour {
         {
             StartCoroutine(SpawnHeapOfMoney());
         }
+	}
+
+	void FixedUpdate () 
+	{
+		if (dragTime > 0 && currentInput == InputState.Up)
+		{
+			endPos = Input.mousePosition;
+			Vector3 targetDir = startPos - endPos;
+			float angle = Vector3.Angle(targetDir, Vector3.left);
+			float distance = targetDir.magnitude / Screen.width;
+			ThrowMoney(angle, distance);
+			SoundManager.inst.PlaySFXOneShot(5);
+			cacheTrail = null;
+			dragTime = 0;
+		}
+
+		if(GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
+		{
+			intervalTime += Time.deltaTime;
+			if (intervalTime >= 0.2f)
+			{
+				dragTime = Time.deltaTime * Random.Range(6, 7); 
+				ThrowMoneyAuto(Random.Range(20, 60), Random.Range(6, 8) / 10f);
+				intervalTime = 0;
+			}
+			dragTime = 0;
+		}
 	}
 
 	Transform CloneTrail()
