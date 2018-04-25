@@ -163,7 +163,7 @@ public class ControllerManager : MonoBehaviour {
             currentInput = InputState.Down;
             startPos = Input.mousePosition;
         }
-        if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0))
         {
             currentInput = InputState.Hold;
         }
