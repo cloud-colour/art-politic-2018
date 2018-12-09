@@ -10930,7 +10930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overlay: {fileID: 908147417}
   exhibitionLogos: {fileID: 2113600220}
-  isExhibitionBuild: 0
+  isExhibitionBuild: 1
 --- !u!4 &870276761
 Transform:
   m_ObjectHideFlags: 0
@@ -17127,27 +17127,27 @@ Prefab:
     - target: {fileID: 224446500353645688, guid: fab400af63def5b46a68b440e5f04bef,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.090909086
       objectReference: {fileID: 0}
     - target: {fileID: 224446500353645688, guid: fab400af63def5b46a68b440e5f04bef,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224499500375056458, guid: fab400af63def5b46a68b440e5f04bef,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.090909086
       objectReference: {fileID: 0}
     - target: {fileID: 224499500375056458, guid: fab400af63def5b46a68b440e5f04bef,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.090909086
       objectReference: {fileID: 0}
     - target: {fileID: 224499500375056458, guid: fab400af63def5b46a68b440e5f04bef,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fab400af63def5b46a68b440e5f04bef, type: 2}
