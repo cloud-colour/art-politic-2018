@@ -10,7 +10,7 @@ public class DebugCanvas : MonoBehaviour {
 	[SerializeField] Slider slider;
 	[SerializeField] Animator anim;
 	[SerializeField] Button btn;
-	public TextMeshProUGUI restartText;
+	public TextMeshPro restartText;
 
 	bool show;
 	// Use this for initialization
