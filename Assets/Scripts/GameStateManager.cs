@@ -15,7 +15,7 @@ public class GameStateManager {
 		OpenSequence,
 		GamePlay,
         VictorySequence,
-        VictoryWaintInput,
+        VictoryWaitInput,
 	}
 
     private static GameStateManager inst;
@@ -67,7 +67,7 @@ public class GameStateManager {
                 SoundManager.inst.PlayBGM(3);
     			break;
 
-            case GameState.VictoryWaintInput:
+            case GameState.VictoryWaitInput:
                 SoundManager.inst.ClearAllAmbient();
                 break;
     		default:

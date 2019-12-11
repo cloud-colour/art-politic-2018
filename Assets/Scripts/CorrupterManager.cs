@@ -73,7 +73,7 @@ public class CorrupterManager : MonoBehaviour
             if (GetCorrupterByID((int)CorrupterType.Officer).Count <= 0)
                 SetAllActiveCollider(CorrupterType.Police, true);
         }
-        CheckServivedTheLawsuit();
+        CheckSurvivedTheLawsuit();
     }
 
     public List<BaseCorrupter> GetCorrupterByID(int corrupterId)
@@ -84,7 +84,7 @@ public class CorrupterManager : MonoBehaviour
             return new List<BaseCorrupter>();
     }
 
-    private void CheckServivedTheLawsuit()
+    private void CheckSurvivedTheLawsuit()
     {
         foreach (var corrupterList in corrupters)
         {

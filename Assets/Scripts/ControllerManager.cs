@@ -47,7 +47,7 @@ public class ControllerManager : MonoBehaviour {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
 
-        dragTouchs = new Dictionary<int,Vector3>();
+        dragTouchs = new Dictionary<int,Vector3>();         // no longer used?
 	}
 
 	// Update is called once per frame
@@ -102,7 +102,7 @@ public class ControllerManager : MonoBehaviour {
             #endif
         }
 
-        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.VictoryWaintInput)
+        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.VictoryWaitInput)
         {
             if (Input.GetMouseButtonDown(0))
             {

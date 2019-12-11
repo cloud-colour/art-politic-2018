@@ -6551,6 +6551,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5694307987266028402, guid: 769235dc84df0214c85fa383ccac8862,
+        type: 3}
+      propertyPath: m_enableKerning
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769235dc84df0214c85fa383ccac8862, type: 3}
 --- !u!4 &1627804197 stripped
@@ -7034,17 +7039,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6501813599510507283, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6962513547525100980, guid: fab400af63def5b46a68b440e5f04bef,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -1609960800044020595, guid: 99ca1f0994c16bf4cbf70e2e10a16de8,
         type: 2}
-    - target: {fileID: 6501813599510507283, guid: fab400af63def5b46a68b440e5f04bef,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab400af63def5b46a68b440e5f04bef, type: 3}
 --- !u!1001 &2052280474450370763
@@ -7054,11 +7059,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1589849394}
     m_Modifications:
-    - target: {fileID: 2052280473127812425, guid: 7943271929505304d9571abae00d90e1,
-        type: 3}
-      propertyPath: m_Name
-      value: Timer
-      objectReference: {fileID: 0}
     - target: {fileID: 2052280473127812424, guid: 7943271929505304d9571abae00d90e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7154,6 +7154,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2052280473127812425, guid: 7943271929505304d9571abae00d90e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Timer
+      objectReference: {fileID: 0}
     - target: {fileID: 2052280473127812431, guid: 7943271929505304d9571abae00d90e1,
         type: 3}
       propertyPath: m_fontSizeBase
@@ -7168,11 +7173,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314383871}
     m_Modifications:
-    - target: {fileID: 5045983748178972049, guid: 2b9257f6af0703d48a05f9959a4f9c6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Click
-      objectReference: {fileID: 0}
     - target: {fileID: 5045983748178972048, guid: 2b9257f6af0703d48a05f9959a4f9c6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7277,6 +7277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045983748178972049, guid: 2b9257f6af0703d48a05f9959a4f9c6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Click
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9257f6af0703d48a05f9959a4f9c6d, type: 3}

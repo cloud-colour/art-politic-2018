@@ -211,6 +211,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1041514124622806361, guid: a94892c5752da6f4fb212a7e86a4c5c8,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a94892c5752da6f4fb212a7e86a4c5c8, type: 3}
 --- !u!4 &24573822 stripped
@@ -5637,11 +5642,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314383871}
     m_Modifications:
-    - target: {fileID: 5045983748178972049, guid: 2b9257f6af0703d48a05f9959a4f9c6d,
-        type: 3}
-      propertyPath: m_Name
-      value: Click
-      objectReference: {fileID: 0}
     - target: {fileID: 5045983748178972048, guid: 2b9257f6af0703d48a05f9959a4f9c6d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5746,6 +5746,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045983748178972049, guid: 2b9257f6af0703d48a05f9959a4f9c6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Click
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9257f6af0703d48a05f9959a4f9c6d, type: 3}
@@ -6967,6 +6972,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224446500353645688, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224446500353645688, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224499500375056458, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224499500375056458, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224499500375056458, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 271687173593041682, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1685138528763484793, guid: 99ca1f0994c16bf4cbf70e2e10a16de8,
+        type: 2}
+    - target: {fileID: 6501813599510507283, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114404426704533320, guid: fab400af63def5b46a68b440e5f04bef, type: 3}
@@ -12976,11 +13017,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1589849394}
     m_Modifications:
-    - target: {fileID: 2052280473127812425, guid: 7943271929505304d9571abae00d90e1,
-        type: 3}
-      propertyPath: m_Name
-      value: Timer
-      objectReference: {fileID: 0}
     - target: {fileID: 2052280473127812424, guid: 7943271929505304d9571abae00d90e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13085,6 +13121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2052280473127812425, guid: 7943271929505304d9571abae00d90e1,
+        type: 3}
+      propertyPath: m_Name
+      value: Timer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7943271929505304d9571abae00d90e1, type: 3}
