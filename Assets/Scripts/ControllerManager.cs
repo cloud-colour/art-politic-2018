@@ -47,7 +47,7 @@ public class ControllerManager : MonoBehaviour {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
 
-        dragTouchs = new Dictionary<int,Vector3>();         // no longer used?
+        dragTouchs = new Dictionary<int,Vector3>();         // used in mobile devices
 	}
 
 	// Update is called once per frame

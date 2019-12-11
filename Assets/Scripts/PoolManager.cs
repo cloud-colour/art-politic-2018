@@ -45,7 +45,7 @@ public class PoolManager : MonoBehaviour {
                 return cash; 
         }
 
-		Transform newCash = Instantiate (isProb?CashProbObject:CashObject).transform;
+        Transform newCash = Instantiate(isProb ? CashProbObject : CashObject).transform;
         newCash.transform.parent = this.transform;
         CashPools.Add(newCash);
         return newCash;
