@@ -208,7 +208,7 @@ public class ControllerManager : MonoBehaviour {
 		{
 			endPos = Input.mousePosition;
 			Vector3 targetDir = startPos - endPos;
-			float angle = Vector3.Angle(targetDir, Vector3.left);
+			float angle = Vector3.Angle(targetDir, Vector3.left);   // you cannot throw the money downward
 			float distance = targetDir.magnitude / Screen.width;
 			ThrowMoney(angle, distance);
 			SoundManager.inst.PlaySFXOneShot(5);
@@ -248,13 +248,13 @@ public class ControllerManager : MonoBehaviour {
         }
     }
 
-    void ThrowMoney(float angle,float distance)
+    void ThrowMoney(float angle, float distance)
     {
         tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
         Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
         float throwForce = (force / dragTime) * (distance * distanceFactor) * GameConfiguration.GetInstance().mouseSensivity;
         tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce);
-        tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
+        tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000, 1000), Random.Range(-1000, 1000), Random.Range(-1000, 1000)));
         SoundManager.inst.PlaySFXOneShot(5);
     }
 

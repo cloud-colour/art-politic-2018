@@ -59,6 +59,7 @@ public class PoolManager : MonoBehaviour {
         tmp.gameObject.SetActive(true);
         return tmp;
     }
+
     private BaseCorrupter GetCorrupterFromPool(BaseCorrupter corrupterObj)
     {
         if (!CorrupterPools.ContainsKey(corrupterObj))
