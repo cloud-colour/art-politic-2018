@@ -17,6 +17,7 @@ public class ControllerManager : MonoBehaviour {
 
     private Transform tmpCash;
     private float dragTime;
+
     public float force;
     public float speedFactor;
     public float myDrag = 0.4f; // hard-coded drag
@@ -28,12 +29,15 @@ public class ControllerManager : MonoBehaviour {
 
     [Header("Line Config")]
 	public LineRenderer linePrefab;
-	private LineRenderer cachedLine;
-    public Transform guideLineGroup;
+	//private LineRenderer cachedLine;
+    public Transform guidelineGroup;
     public int pointsOnGuideline;  // the number of points on guideline curve
     private Vector3[] guidelineCoordinates;
 
-    public float guidelineRatio = 1f;
+    public float guidelineMinConfig = 0.3f;
+    public float guidelineMaxConfig = 0.7f;
+
+    public float timeToLive = 1f; // in seconds
 
     private float intervalTime;
 
@@ -188,11 +192,6 @@ public class ControllerManager : MonoBehaviour {
         startToCurrent = currentPos - startPos;
 
 #endif
-        /*if(tmpCash != null)
-        {
-            var v = tmpCash.GetComponent<Rigidbody>().velocity;
-            Debug.Log(v + " " + v.magnitude);
-        }*/
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -216,10 +215,10 @@ public class ControllerManager : MonoBehaviour {
 
         if (!drawn && currentInput == InputState.Down)
         {
-            cachedLine = Instantiate(linePrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-            cachedLine.positionCount = 2;
-            cachedLine.SetPosition(0, throwSpawnPos.position);
-            cachedLine.SetPosition(1, throwSpawnPos.position);
+            //cachedLine = Instantiate(linePrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            //cachedLine.positionCount = 2;
+            //cachedLine.SetPosition(0, throwSpawnPos.position);
+            //cachedLine.SetPosition(1, throwSpawnPos.position);
 
             drawn = true;
         }
@@ -232,7 +231,7 @@ public class ControllerManager : MonoBehaviour {
             {
                 if (currentInput == InputState.Hold)
                 {
-                    cachedLine.SetPosition(1, throwSpawnPos.position + startToCurrent);
+                    //cachedLine.SetPosition(1, throwSpawnPos.position + startToCurrent);
 
                     float angle = Vector3.Angle(startToCurrent, Vector3.right);   // you cannot throw the money downward
                     float speed = startToCurrent.magnitude * speedFactor;
@@ -253,14 +252,14 @@ public class ControllerManager : MonoBehaviour {
                     SoundManager.inst.PlaySFXOneShot(5);
 
                     drawn = false;
-                    Destroy(cachedLine.gameObject);
-                    /*if (guideLineGroup.childCount > 0)
+                    //Destroy(cachedLine.gameObject);
+                    if (guidelineGroup.childCount > 0)
                     {
-                        for (int i = 0; i < guideLineGroup.childCount; i++)
+                        for (int i = 0; i < guidelineGroup.childCount; i++)
                         {
-                            Destroy(guideLineGroup.GetChild(i).gameObject);
+                            Destroy(guidelineGroup.GetChild(i).gameObject, timeToLive);
                         }
-                    }*/
+                    }
                 }
             }
         }
@@ -310,22 +309,42 @@ public class ControllerManager : MonoBehaviour {
     private void DrawCurve(Vector3[] parabolaCoordinates)
     {
         // Destroy existing curve first
-        if (guideLineGroup.childCount > 0)
+        if (guidelineGroup.childCount > 0)
         {
-            for (int i = 0; i < guideLineGroup.childCount; i++)
+            for (int i = 0; i < guidelineGroup.childCount; i++)
             {
-                Destroy(guideLineGroup.GetChild(i).gameObject);
+                Destroy(guidelineGroup.GetChild(i).gameObject);
             }
         }
 
-        LineRenderer cachedLine;       
+        LineRenderer cachedLine;
+        float minC = guidelineMinConfig * parabolaCoordinates.Length;
+        float maxC = guidelineMaxConfig * parabolaCoordinates.Length;
 
-        for (int i = 1; i < (int)(guidelineRatio * parabolaCoordinates.Length); i++)
+        for (int i = 1; i < (int)(parabolaCoordinates.Length); i++)
         {
-            cachedLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity, guideLineGroup);
+            cachedLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity, guidelineGroup);
 
             cachedLine.SetPosition(0, parabolaCoordinates[i - 1]);
             cachedLine.SetPosition(1, parabolaCoordinates[i]);
+
+            Debug.Log(guidelineMinConfig);  
+            if (i >= minC)
+            {
+                float a1 = 1f - (i - minC) / (maxC - minC);
+                float a2 = 1f - (i + 1 - minC) / (maxC - minC);
+
+                a1 = (a1 < 0) ? 0 : a1;
+                a2 = (a2 < 0) ? 0 : a2;
+
+                // Debug.Log(a1 + " " + a2);
+                Gradient gradient = new Gradient();
+                gradient.SetKeys(
+                    new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+                    new GradientAlphaKey[] { new GradientAlphaKey(a1, 0.0f), new GradientAlphaKey(a2, 1.0f) }
+                );
+                cachedLine.colorGradient = gradient;
+            }
         }
     }
 }

@@ -47,14 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwSpawnPos: {fileID: 0}
-  force: 250
+  force: 5
   speedFactor: 2
-  gravityFactor: 0
+  myDrag: 5.1
+  cashMass: 5
   drawn: 0
   linePrefab: {fileID: 7962172180371218981, guid: 53ddf3f1bde88c542b1c97670df9d16f,
     type: 3}
-  guideLineGroup: {fileID: 2693633120693935860}
+  guidelineGroup: {fileID: 2693633120693935860}
   pointsOnGuideline: 30
+  guidelineMinConfig: 0.3
+  guidelineMaxConfig: 0.6
 --- !u!1 &1672381169644594
 GameObject:
   m_ObjectHideFlags: 0

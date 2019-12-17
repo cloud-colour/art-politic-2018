@@ -1625,11 +1625,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114636659510252422, guid: 8ff12dd2ef899f1428553fb1f991a129,
         type: 3}
-      propertyPath: throwSpawnPos
-      value: 
-      objectReference: {fileID: 695825719}
-    - target: {fileID: 114636659510252422, guid: 8ff12dd2ef899f1428553fb1f991a129,
-        type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1314383870}
@@ -1656,24 +1651,14 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 114636659510252422, guid: 8ff12dd2ef899f1428553fb1f991a129,
         type: 3}
-      propertyPath: speedFactor
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114636659510252422, guid: 8ff12dd2ef899f1428553fb1f991a129,
-        type: 3}
-      propertyPath: force
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114636659510252422, guid: 8ff12dd2ef899f1428553fb1f991a129,
-        type: 3}
       propertyPath: guidelineRatio
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114636659510252422, guid: 8ff12dd2ef899f1428553fb1f991a129,
         type: 3}
-      propertyPath: myDrag
-      value: 5.1
-      objectReference: {fileID: 0}
+      propertyPath: throwSpawnPos
+      value: 
+      objectReference: {fileID: 695825719}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff12dd2ef899f1428553fb1f991a129, type: 3}
 --- !u!1 &1461739431
