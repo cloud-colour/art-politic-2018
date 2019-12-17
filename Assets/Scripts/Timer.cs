@@ -5,13 +5,13 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-	TextMeshPro text;
+	TextMeshProUGUI text;
 	float timer = 30;
 	float elapse;
 
 	void Start()
 	{
-		text = this.GetComponent<TextMeshPro>();
+		text = this.GetComponent<TextMeshProUGUI>();
 	}
 
 	void Update ()

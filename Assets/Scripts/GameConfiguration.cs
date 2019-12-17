@@ -14,10 +14,10 @@ public class GameConfiguration {
         return inst;
     }
 
-    public float mouseSensivity; 
+    public float mouseSensitivity; 
 
     public GameConfiguration()
     {
-        mouseSensivity = 1;
+        mouseSensitivity = 1;
     }
 }

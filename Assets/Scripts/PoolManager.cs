@@ -42,12 +42,19 @@ public class PoolManager : MonoBehaviour {
         foreach (var cash in CashPools)
         {
             if (!cash.gameObject.activeInHierarchy)
-                return cash; 
+            {               
+                cash.transform.eulerAngles = new Vector3(1, 270, 0);
+                cash.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                cash.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+                return cash;
+            }                
         }
 
         Transform newCash = Instantiate(isProb ? CashProbObject : CashObject).transform;
         newCash.transform.parent = this.transform;
         CashPools.Add(newCash);
+
+        Debug.Log(newCash.transform.eulerAngles);
         return newCash;
     }
 

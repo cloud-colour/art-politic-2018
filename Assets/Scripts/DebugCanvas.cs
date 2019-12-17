@@ -24,17 +24,17 @@ public class DebugCanvas : MonoBehaviour {
 
 	void Start ()
 	{
-		slider.value = GameConfiguration.GetInstance().mouseSensivity;
+		slider.value = GameConfiguration.GetInstance().mouseSensitivity;
 	}
 
 	public void SetSensitivity()
 	{
-		GameConfiguration.GetInstance().mouseSensivity = slider.value;
+		GameConfiguration.GetInstance().mouseSensitivity = slider.value;
 	}
 
 	public void Restart()
 	{
-		GameConfiguration.GetInstance().mouseSensivity = 1;
+		GameConfiguration.GetInstance().mouseSensitivity = 1;
 		GameSceneManager.GetInstance().ReturnToWelcome();
 	}
 

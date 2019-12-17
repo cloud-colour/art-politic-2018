@@ -11,44 +11,57 @@ public enum InputState
 }
 
 public class ControllerManager : MonoBehaviour {
-
-    private Vector3 startPos,endPos;
-
+    
     [SerializeField]
     private Transform throwSpawnPos;
 
     private Transform tmpCash;
-
     private float dragTime;
-
     public float force;
-    public float distanceFactor;
+    public float speedFactor;
+    public float myDrag = 0.4f; // hard-coded drag
+    public float cashMass = 5f;
 
     private InputState currentInput;
+    [SerializeField]
+    private bool drawn = false;
 
-	[Header("Trail Config")]
-	[SerializeField]
-	private Transform trailPrefab;
-	[SerializeField]
-	private float trailDragDuration;
-	private Transform cacheTrail;
+    [Header("Line Config")]
+	public LineRenderer linePrefab;
+	private LineRenderer cachedLine;
+    public Transform guideLineGroup;
+    public int pointsOnGuideline;  // the number of points on guideline curve
+    private Vector3[] guidelineCoordinates;
+
+    public float guidelineRatio = 1f;
 
     private float intervalTime;
 
     private Dictionary<int,Vector3> dragTouchs;
 
+    private Vector3 startMousePos, endMousePos;
+    private Vector3 startPos;
+    private Vector3 currentPos;
+    private Vector3 startToCurrent;
 
-	//idle check
-	Vector3 lastMousePos;
+    float gravity = 9.81f;
+
+    //idle check
+    Vector3 lastMousePos;
 	float idleTime;
 
-	void Start () 
+    void Start () 
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             GameStateManager.GetInstance().ChangeState(GameStateManager.GameState.OpenSequence);
 
         dragTouchs = new Dictionary<int,Vector3>();         // used in mobile devices
-	}
+        drawn = false;
+
+        guidelineCoordinates = new Vector3[pointsOnGuideline];
+
+        gravity = Physics.gravity.magnitude;
+    }
 
 	// Update is called once per frame
     void Update () 
@@ -111,8 +124,6 @@ public class ControllerManager : MonoBehaviour {
             return;
         }
 
-        
-
         if (GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.GamePlay && 
             GameStateManager.GetInstance().GetGameState() != GameStateManager.GameState.TitleWaitInput)
             return;
@@ -161,40 +172,27 @@ public class ControllerManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             currentInput = InputState.Down;
-            startPos = Input.mousePosition;
+            startMousePos = Input.mousePosition;
+            startPos = Camera.main.ScreenToWorldPoint(startMousePos);
         }
         else if (Input.GetMouseButton(0))
         {
             currentInput = InputState.Hold;
         }
-        if (!Input.GetMouseButton(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             currentInput = InputState.Up;
         }
+        
+        currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        startToCurrent = currentPos - startPos;
+
 #endif
-        if (currentInput == InputState.Down)
+        /*if(tmpCash != null)
         {
-            dragTime = 0;
-			cacheTrail = CloneTrail();
-        }
-        if (currentInput == InputState.Hold)
-        {
-            dragTime += Time.deltaTime;
-        }
-       
-
-		//trail renderer
-		if(Input.GetMouseButton(0) && dragTime < trailDragDuration)
-		{
-			if(cacheTrail)
-			{
-				Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				touchPos.z = -1.96f; //hardcoded trail z pos
-				cacheTrail.transform.position = touchPos;
-			}
-		}
-
-
+            var v = tmpCash.GetComponent<Rigidbody>().velocity;
+            Debug.Log(v + " " + v.magnitude);
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -204,43 +202,76 @@ public class ControllerManager : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-		if (dragTime > 0 && currentInput == InputState.Up)
-		{
-			endPos = Input.mousePosition;
-			Vector3 targetDir = startPos - endPos;
-			float angle = Vector3.Angle(targetDir, Vector3.left);   // you cannot throw the money downward
-			float distance = targetDir.magnitude / Screen.width;
-			ThrowMoney(angle, distance);
-			SoundManager.inst.PlaySFXOneShot(5);
-			cacheTrail = null;
-			dragTime = 0;
-		}
-
 		if(GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
 		{
 			intervalTime += Time.deltaTime;
 			if (intervalTime >= 0.2f)
 			{
-				dragTime = Time.deltaTime * Random.Range(6, 7); 
-				ThrowMoneyAuto(Random.Range(20, 60), Random.Range(6, 8) / 10f);
+				// dragTime = Time.deltaTime * Random.Range(6, 7); 
+				ThrowMoneyAuto(Random.Range(20, 60), Random.Range(30, 50) / 10f);
 				intervalTime = 0;
 			}
 			dragTime = 0;
 		}
-	}
 
-	Transform CloneTrail()
-	{
-		var clone = Instantiate(trailPrefab,Camera.main.ScreenToWorldPoint(Input.mousePosition),Quaternion.identity,null);
-		return clone;
-	}
+        if (!drawn && currentInput == InputState.Down)
+        {
+            cachedLine = Instantiate(linePrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+            cachedLine.positionCount = 2;
+            cachedLine.SetPosition(0, throwSpawnPos.position);
+            cachedLine.SetPosition(1, throwSpawnPos.position);
+
+            drawn = true;
+        }
+
+        if (drawn)
+        {
+            //Debug.Log(startToEnd.magnitude);
+
+            if (startToCurrent.magnitude > 0f)
+            {
+                if (currentInput == InputState.Hold)
+                {
+                    cachedLine.SetPosition(1, throwSpawnPos.position + startToCurrent);
+
+                    float angle = Vector3.Angle(startToCurrent, Vector3.right);   // you cannot throw the money downward
+                    float speed = startToCurrent.magnitude * speedFactor;
+
+                    guidelineCoordinates = ParabolaCurve.GetCoordinates(throwSpawnPos.position, GameObject.Find("Plane").transform.position.y,
+                                                                angle, speed, cashMass, myDrag, pointsOnGuideline);
+                    DrawCurve(guidelineCoordinates);
+                }
+                else if (currentInput == InputState.Up)
+                {
+                    currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector3 targetDir = currentPos - startPos;
+                    float angle = Vector3.Angle(targetDir, Vector3.right);   // you cannot throw the money downward
+                    float speed = startToCurrent.magnitude * speedFactor;
+
+                    tmpCash = ThrowMoney(angle, speed);
+
+                    SoundManager.inst.PlaySFXOneShot(5);
+
+                    drawn = false;
+                    Destroy(cachedLine.gameObject);
+                    /*if (guideLineGroup.childCount > 0)
+                    {
+                        for (int i = 0; i < guideLineGroup.childCount; i++)
+                        {
+                            Destroy(guideLineGroup.GetChild(i).gameObject);
+                        }
+                    }*/
+                }
+            }
+        }
+    }
 
     IEnumerator SpawnHeapOfMoney()
     {
         Vector3 tmpPos;
         for(int i = 0 ;i <= 100; i++)
         {
-            tmpPos = new Vector3( Random.Range(0,Screen.width),Screen.height , 0);
+            tmpPos = new Vector3(Random.Range(0, Screen.width), Screen.height, 0);
             tmpPos = Camera.main.ScreenToWorldPoint(tmpPos);
             tmpPos.z = 0;
             tmpCash = PoolManager.Inst.CreateCash(tmpPos);
@@ -248,24 +279,53 @@ public class ControllerManager : MonoBehaviour {
         }
     }
 
-    void ThrowMoney(float angle, float distance)
+    Transform ThrowMoney(float angle, float speed)
     {
         tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
         Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-        float throwForce = (force / dragTime) * (distance * distanceFactor) * GameConfiguration.GetInstance().mouseSensivity;
-        tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce);
+        float throwForce = tmpCash.GetComponent<Rigidbody>().mass * speed / Time.fixedDeltaTime * GameConfiguration.GetInstance().mouseSensitivity;
+        tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce, ForceMode.Force);
         tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000, 1000), Random.Range(-1000, 1000), Random.Range(-1000, 1000)));
         SoundManager.inst.PlaySFXOneShot(5);
+
+        Debug.Log("dir: " + dir);
+        Debug.Log("distance: " + speed);
+        Debug.Log("angle: " + angle);
+        Debug.Log("throw force: " + dir + " " + throwForce);
+
+        return tmpCash;
     }
 
 	//force mouse sensitivity = 1
-	void ThrowMoneyAuto(float angle,float distance)
+	void ThrowMoneyAuto(float angle,float speed)
 	{
 		tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
 		Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-		float throwForce = (force / dragTime) * (distance * distanceFactor) * 1;
+		float throwForce = (tmpCash.GetComponent<Rigidbody>().mass / Time.fixedDeltaTime) * (speed * speedFactor) * 1;
 		tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce);
 		tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
 		SoundManager.inst.PlaySFXOneShot(5);
 	}
+    
+    private void DrawCurve(Vector3[] parabolaCoordinates)
+    {
+        // Destroy existing curve first
+        if (guideLineGroup.childCount > 0)
+        {
+            for (int i = 0; i < guideLineGroup.childCount; i++)
+            {
+                Destroy(guideLineGroup.GetChild(i).gameObject);
+            }
+        }
+
+        LineRenderer cachedLine;       
+
+        for (int i = 1; i < (int)(guidelineRatio * parabolaCoordinates.Length); i++)
+        {
+            cachedLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity, guideLineGroup);
+
+            cachedLine.SetPosition(0, parabolaCoordinates[i - 1]);
+            cachedLine.SetPosition(1, parabolaCoordinates[i]);
+        }
+    }
 }
