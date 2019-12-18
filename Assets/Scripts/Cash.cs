@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Cash : MonoBehaviour {
 
-    private Rigidbody rigid;
+    public Rigidbody Rigidbody { get; set; }
 	// Use this for initialization
-	void Start () 
+	protected void Awake () 
     {
-        rigid = GetComponent<Rigidbody>();
-        rigid.sleepThreshold = 0.3f;
+        Rigidbody = gameObject.GetComponent<Rigidbody>();
+        Rigidbody.sleepThreshold = 0.3f;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	public virtual void Update () 
     {
-        
-        if (rigid.IsSleeping())
+        if (Rigidbody.IsSleeping())
         {
             gameObject.layer = LayerMask.NameToLayer("CleanCash");
         }

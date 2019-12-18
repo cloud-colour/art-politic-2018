@@ -18377,6 +18377,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 271687173593041682, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1685138528763484793, guid: 99ca1f0994c16bf4cbf70e2e10a16de8,
+        type: 2}
+    - target: {fileID: 6501813599510507283, guid: fab400af63def5b46a68b440e5f04bef,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab400af63def5b46a68b440e5f04bef, type: 3}
 --- !u!1 &1383849349

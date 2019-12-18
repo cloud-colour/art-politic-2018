@@ -7,14 +7,14 @@ public class PoolManager : MonoBehaviour {
     static public PoolManager Inst;
 
     [SerializeField]
-    private Transform CashObject;
+    private Cash CashObject;
 	[SerializeField]
-	private Transform CashProbObject;
+	private Cash CashProbObject;
 
     [SerializeField]
     private List<BaseCorrupter> CorrupterPrefabs;
 
-    private List<Transform> CashPools;
+    private List<Cash> CashPools;
     private Dictionary<BaseCorrupter,List<BaseCorrupter>> CorrupterPools;
 
     void Awake()
@@ -24,37 +24,38 @@ public class PoolManager : MonoBehaviour {
 
     void Start () 
     {
-        CashPools = new List<Transform>();
+        CashPools = new List<Cash>();
         CorrupterPools = new Dictionary<BaseCorrupter,List<BaseCorrupter>>();
     }
 
-	public Transform CreateCash(Vector3 position, bool isProb = false)
+	public Cash CreateCash(Vector3 position, bool isProb = false)
     {
-        Transform tmp;
+        Cash tmp;
+                
 		tmp = GetCashFromPool(isProb);
-        tmp.transform.position = position;
+        tmp.gameObject.transform.position = position;
         tmp.gameObject.SetActive(true);
+
         return tmp;
     }
 
-	private Transform GetCashFromPool(bool isProb = false)
+    private Cash GetCashFromPool(bool isProb = false)
     {
-        foreach (var cash in CashPools)
+        foreach (Cash cash in CashPools)
         {
             if (!cash.gameObject.activeInHierarchy)
-            {               
-                cash.transform.eulerAngles = new Vector3(1, 270, 0);
-                cash.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                cash.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            {
+                cash.gameObject.transform.eulerAngles = new Vector3(1, 270, 0);
+                cash.Rigidbody.velocity = Vector3.zero;
+                cash.Rigidbody.angularVelocity = Vector3.zero;
                 return cash;
             }                
         }
 
-        Transform newCash = Instantiate(isProb ? CashProbObject : CashObject).transform;
-        newCash.transform.parent = this.transform;
+        Cash newCash = Instantiate(isProb ? CashProbObject : CashObject);
+        newCash.gameObject.transform.parent = this.transform;
         CashPools.Add(newCash);
 
-        Debug.Log(newCash.transform.eulerAngles);
         return newCash;
     }
 

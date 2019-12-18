@@ -15,7 +15,9 @@ public class ControllerManager : MonoBehaviour {
     [SerializeField]
     private Transform throwSpawnPos;
 
-    private Transform tmpCash;
+    private Cash tmpCash;
+    private Rigidbody tmpRb;
+
     private float dragTime;
 
     public float force;
@@ -29,7 +31,7 @@ public class ControllerManager : MonoBehaviour {
 
     [Header("Line Config")]
 	public LineRenderer linePrefab;
-	//private LineRenderer cachedLine;
+    private LineRenderer cachedLine;
     public Transform guidelineGroup;
     public int pointsOnGuideline;  // the number of points on guideline curve
     private Vector3[] guidelineCoordinates;
@@ -38,7 +40,7 @@ public class ControllerManager : MonoBehaviour {
     public float guidelineMaxConfig = 0.7f;
 
     public float timeToLive = 1f; // in seconds
-
+    
     private float intervalTime;
 
     private Dictionary<int,Vector3> dragTouchs;
@@ -48,7 +50,9 @@ public class ControllerManager : MonoBehaviour {
     private Vector3 currentPos;
     private Vector3 startToCurrent;
 
-    float gravity = 9.81f;
+    private float gravity = 9.81f;
+
+    private GameObject plane;
 
     //idle check
     Vector3 lastMousePos;
@@ -65,6 +69,7 @@ public class ControllerManager : MonoBehaviour {
         guidelineCoordinates = new Vector3[pointsOnGuideline];
 
         gravity = Physics.gravity.magnitude;
+        plane = GameObject.Find("Plane");
     }
 
 	// Update is called once per frame
@@ -173,6 +178,7 @@ public class ControllerManager : MonoBehaviour {
         }else
             currentInput = InputState.Up;
 #else
+
         if (Input.GetMouseButtonDown(0))
         {
             currentInput = InputState.Down;
@@ -187,9 +193,6 @@ public class ControllerManager : MonoBehaviour {
         {
             currentInput = InputState.Up;
         }
-        
-        currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        startToCurrent = currentPos - startPos;
 
 #endif
 
@@ -197,71 +200,66 @@ public class ControllerManager : MonoBehaviour {
         {
             StartCoroutine(SpawnHeapOfMoney());
         }
-	}
 
-	void FixedUpdate () 
-	{
-		if(GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
-		{
-			intervalTime += Time.deltaTime;
-			if (intervalTime >= 0.2f)
-			{
-				// dragTime = Time.deltaTime * Random.Range(6, 7); 
-				ThrowMoneyAuto(Random.Range(20, 60), Random.Range(30, 50) / 10f);
-				intervalTime = 0;
-			}
-			dragTime = 0;
-		}
+        if (currentInput == InputState.Down)
+        {
+            startMousePos = Input.mousePosition;
+            startPos = Camera.main.ScreenToWorldPoint(startMousePos);
+        }
+
+        currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        startToCurrent = currentPos - startPos;
 
         if (!drawn && currentInput == InputState.Down)
         {
-            //cachedLine = Instantiate(linePrefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-            //cachedLine.positionCount = 2;
-            //cachedLine.SetPosition(0, throwSpawnPos.position);
-            //cachedLine.SetPosition(1, throwSpawnPos.position);
-
             drawn = true;
         }
 
-        if (drawn)
+        if (drawn && startToCurrent.magnitude > 0f)
         {
-            //Debug.Log(startToEnd.magnitude);
-
-            if (startToCurrent.magnitude > 0f)
+            if (currentInput == InputState.Hold)
             {
-                if (currentInput == InputState.Hold)
+                float angle = Vector3.Angle(startToCurrent, Vector3.right);   // you cannot throw the money downward
+                float speed = startToCurrent.magnitude * speedFactor;
+
+                guidelineCoordinates = ParabolaCurve.GetCoordinates(throwSpawnPos.position, plane.transform.position.y,
+                                                            angle, speed, cashMass, myDrag, pointsOnGuideline);
+                DrawCurve(guidelineCoordinates);
+            }
+            else if (currentInput == InputState.Up)
+            {
+                float angle = Vector3.Angle(startToCurrent, Vector3.right);   // you cannot throw the money downward
+                float speed = startToCurrent.magnitude * speedFactor;
+
+                ThrowMoney(angle, speed);
+
+                SoundManager.inst.PlaySFXOneShot(5);
+
+                drawn = false;
+
+                if (guidelineGroup.childCount > 0)
                 {
-                    //cachedLine.SetPosition(1, throwSpawnPos.position + startToCurrent);
-
-                    float angle = Vector3.Angle(startToCurrent, Vector3.right);   // you cannot throw the money downward
-                    float speed = startToCurrent.magnitude * speedFactor;
-
-                    guidelineCoordinates = ParabolaCurve.GetCoordinates(throwSpawnPos.position, GameObject.Find("Plane").transform.position.y,
-                                                                angle, speed, cashMass, myDrag, pointsOnGuideline);
-                    DrawCurve(guidelineCoordinates);
-                }
-                else if (currentInput == InputState.Up)
-                {
-                    currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector3 targetDir = currentPos - startPos;
-                    float angle = Vector3.Angle(targetDir, Vector3.right);   // you cannot throw the money downward
-                    float speed = startToCurrent.magnitude * speedFactor;
-
-                    tmpCash = ThrowMoney(angle, speed);
-
-                    SoundManager.inst.PlaySFXOneShot(5);
-
-                    drawn = false;
-                    //Destroy(cachedLine.gameObject);
-                    if (guidelineGroup.childCount > 0)
+                    for (int i = 0; i < guidelineGroup.childCount; i++)
                     {
-                        for (int i = 0; i < guidelineGroup.childCount; i++)
-                        {
-                            Destroy(guidelineGroup.GetChild(i).gameObject, timeToLive);
-                        }
+                        Destroy(guidelineGroup.GetChild(i).gameObject, timeToLive);
                     }
                 }
             }
+        }
+    }
+
+	void FixedUpdate () 
+	{
+        if (GameStateManager.GetInstance().GetGameState() == GameStateManager.GameState.TitleThrow)
+        {
+            intervalTime += Time.deltaTime;
+            if (intervalTime >= 0.2f)
+            {
+                // dragTime = Time.deltaTime * Random.Range(6, 7); 
+                ThrowMoneyAuto(Random.Range(20, 60), Random.Range(30, 50) / 5f);
+                intervalTime = 0;
+            }
+            dragTime = 0;
         }
     }
 
@@ -273,36 +271,33 @@ public class ControllerManager : MonoBehaviour {
             tmpPos = new Vector3(Random.Range(0, Screen.width), Screen.height, 0);
             tmpPos = Camera.main.ScreenToWorldPoint(tmpPos);
             tmpPos.z = 0;
-            tmpCash = PoolManager.Inst.CreateCash(tmpPos);
+            PoolManager.Inst.CreateCash(tmpPos);
             yield return 0;
         }
     }
 
-    Transform ThrowMoney(float angle, float speed)
+    void ThrowMoney(float angle, float speed)
     {
         tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
+        tmpRb = tmpCash.GetComponent<Rigidbody>();
+
         Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-        float throwForce = tmpCash.GetComponent<Rigidbody>().mass * speed / Time.fixedDeltaTime * GameConfiguration.GetInstance().mouseSensitivity;
-        tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce, ForceMode.Force);
-        tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000, 1000), Random.Range(-1000, 1000), Random.Range(-1000, 1000)));
+        float throwForce = tmpRb.mass * speed / Time.fixedDeltaTime * GameConfiguration.GetInstance().mouseSensitivity;
+        tmpRb.AddForce(dir * throwForce, ForceMode.Force);
+        tmpRb.AddTorque(new Vector3(Random.Range(-1000, 1000), Random.Range(-1000, 1000), Random.Range(-1000, 1000)));
         SoundManager.inst.PlaySFXOneShot(5);
-
-        Debug.Log("dir: " + dir);
-        Debug.Log("distance: " + speed);
-        Debug.Log("angle: " + angle);
-        Debug.Log("throw force: " + dir + " " + throwForce);
-
-        return tmpCash;
     }
 
 	//force mouse sensitivity = 1
 	void ThrowMoneyAuto(float angle,float speed)
 	{
 		tmpCash = PoolManager.Inst.CreateCash(throwSpawnPos.position);
+        tmpRb = tmpCash.GetComponent<Rigidbody>();
+
 		Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
-		float throwForce = (tmpCash.GetComponent<Rigidbody>().mass / Time.fixedDeltaTime) * (speed * speedFactor) * 1;
-		tmpCash.GetComponent<Rigidbody>().AddForce(dir * throwForce);
-		tmpCash.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
+		float throwForce = (tmpRb.mass / Time.fixedDeltaTime) * (speed * speedFactor) * 1;
+		tmpRb.AddForce(dir * throwForce);
+		tmpRb.AddTorque(new Vector3(Random.Range(-1000,1000), Random.Range(-1000,1000), Random.Range(-1000,1000)));
 		SoundManager.inst.PlaySFXOneShot(5);
 	}
     
@@ -328,7 +323,6 @@ public class ControllerManager : MonoBehaviour {
             cachedLine.SetPosition(0, parabolaCoordinates[i - 1]);
             cachedLine.SetPosition(1, parabolaCoordinates[i]);
 
-            Debug.Log(guidelineMinConfig);  
             if (i >= minC)
             {
                 float a1 = 1f - (i - minC) / (maxC - minC);
@@ -337,7 +331,6 @@ public class ControllerManager : MonoBehaviour {
                 a1 = (a1 < 0) ? 0 : a1;
                 a2 = (a2 < 0) ? 0 : a2;
 
-                // Debug.Log(a1 + " " + a2);
                 Gradient gradient = new Gradient();
                 gradient.SetKeys(
                     new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
@@ -346,5 +339,6 @@ public class ControllerManager : MonoBehaviour {
                 cachedLine.colorGradient = gradient;
             }
         }
+
     }
 }

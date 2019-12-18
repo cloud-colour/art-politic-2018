@@ -58,6 +58,7 @@ MonoBehaviour:
   pointsOnGuideline: 30
   guidelineMinConfig: 0.3
   guidelineMaxConfig: 0.6
+  timeToLive: 1
 --- !u!1 &1672381169644594
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,8 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a38679eb936949889b526bbeff29082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CashObject: {fileID: 4096877462952014, guid: 7499f009b938144ab8367e60eaeb69ac, type: 3}
-  CashProbObject: {fileID: 4096877462952014, guid: d718af69fd7f36d4589b4278f40c461d,
+  CashObject: {fileID: 114694523214435826, guid: 7499f009b938144ab8367e60eaeb69ac,
+    type: 3}
+  CashProbObject: {fileID: -2287343580345289122, guid: d718af69fd7f36d4589b4278f40c461d,
     type: 3}
   CorrupterPrefabs:
   - {fileID: 114673465680715206, guid: 77db4be7486234c2bbd9610e54801fdc, type: 3}

@@ -31,7 +31,7 @@ public class ParabolaCurve
 
             parabolaCoordinates[i] = new Vector3(throwPoint.x + xDistance, throwPoint.y + yDistance, 0);
         }
-
+        
         return parabolaCoordinates;
     }
 
