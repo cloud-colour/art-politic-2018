@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CashObject: {fileID: 114694523214435826, guid: 7499f009b938144ab8367e60eaeb69ac,
     type: 3}
-  CashProbObject: {fileID: -2287343580345289122, guid: d718af69fd7f36d4589b4278f40c461d,
+  CashPropObject: {fileID: -2287343580345289122, guid: d718af69fd7f36d4589b4278f40c461d,
     type: 3}
   CorrupterPrefabs:
   - {fileID: 114673465680715206, guid: 77db4be7486234c2bbd9610e54801fdc, type: 3}

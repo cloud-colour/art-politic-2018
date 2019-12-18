@@ -31,7 +31,7 @@ public class StageAnimEvent : MonoBehaviour
 			tmpPos = Camera.main.ScreenToWorldPoint(tmpPos);
 			tmpPos.z = 0.5f;
 
-			tmpCash = PoolManager.Inst.CreateCash(tmpPos, isProb: true);
+			tmpCash = PoolManager.Inst.CreateCash(tmpPos, isProp: true);
 
 			rb = tmpCash.GetComponent<Rigidbody>();
 			rb.sleepThreshold = 0.5f;

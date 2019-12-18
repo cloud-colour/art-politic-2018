@@ -9,7 +9,7 @@ public class PoolManager : MonoBehaviour {
     [SerializeField]
     private Cash CashObject;
 	[SerializeField]
-	private Cash CashProbObject;
+	private Cash CashPropObject;
 
     [SerializeField]
     private List<BaseCorrupter> CorrupterPrefabs;
@@ -28,18 +28,18 @@ public class PoolManager : MonoBehaviour {
         CorrupterPools = new Dictionary<BaseCorrupter,List<BaseCorrupter>>();
     }
 
-	public Cash CreateCash(Vector3 position, bool isProb = false)
+	public Cash CreateCash(Vector3 position, bool isProp = false)
     {
         Cash tmp;
                 
-		tmp = GetCashFromPool(isProb);
+		tmp = GetCashFromPool(isProp);
         tmp.gameObject.transform.position = position;
         tmp.gameObject.SetActive(true);
 
         return tmp;
     }
 
-    private Cash GetCashFromPool(bool isProb = false)
+    private Cash GetCashFromPool(bool isProp = false)
     {
         foreach (Cash cash in CashPools)
         {
@@ -52,7 +52,7 @@ public class PoolManager : MonoBehaviour {
             }                
         }
 
-        Cash newCash = Instantiate(isProb ? CashProbObject : CashObject);
+        Cash newCash = Instantiate(isProp ? CashPropObject : CashObject);
         newCash.gameObject.transform.parent = this.transform;
         CashPools.Add(newCash);
 
