@@ -56,9 +56,9 @@ MonoBehaviour:
     type: 3}
   guidelineGroup: {fileID: 2693633120693935860}
   pointsOnGuideline: 30
-  guidelineMinConfig: 0.3
-  guidelineMaxConfig: 0.6
-  timeToLive: 1
+  guidelineMinConfig: 0.1
+  guidelineMaxConfig: 0.4
+  timeToLive: 0.4
 --- !u!1 &1672381169644594
 GameObject:
   m_ObjectHideFlags: 0
